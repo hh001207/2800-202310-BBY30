@@ -1,17 +1,14 @@
-const units = require("./units.js");
+const units = require("./scripts/units.js");
 
 require('dotenv').config();
-const { MongoClient } = require('mongodb');
 const express = require('express');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const multer = require('multer');
 const bcrypt = require('bcrypt');
 const saltRounds = 12;
 
 const port = process.env.PORT || 3000;
 const app = express();
-const upload = multer();
 const Joi = require('joi');
 
 const expireTime = 24 * 60 * 60 * 1000;
@@ -23,8 +20,6 @@ const mongodb_database = process.env.MONGODB_DATABASE;
 const mongodb_session_secret = process.env.MONGODB_SESSION_SECRET;
 
 const node_session_secret = process.env.NODE_SESSION_SECRET;
-
-
 
 var {database} = include('databaseConnection');
 
@@ -43,9 +38,11 @@ var {database} = include('databaseConnection');
 //   });
 
 const userCollection = database.db(mongodb_database).collection('users');
-const shareCollection = database.db(mongodb_database).collection('shares');
 
-
+const shareCollection = (req) => {
+	console.log('req.session.username:', req.session.username);
+	return database.db(mongodb_database).collection(req.session.username);
+  };
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: false}));
@@ -274,25 +271,31 @@ function requireAuth(req, res, next) {
   
 app.use('/share', requireAuth);
 
+app.get('/sharesucceed', (req, res) => {
+	res.render('sharesucceed');
+  });
+  
+
 app.get('/share', (req, res) => {
-	res.render('share'); // 渲染share.ejs模板
+	res.render('share'); 
   });
 
-  database.connect(err => {
-	if (err) {
-	  console.error('Error connecting to MongoDB:', err);
-	  return;
-	}
-	console.log('Connected to MongoDB');
-	const db = database.db($(process.env.MONGODB_DATABASE));
+//   database.connect(err => {
+// 	if (err) {
+// 	  console.error('Error connecting to MongoDB:', err);
+// 	  return;
+// 	}
+// 	console.log('Connected to MongoDB');
+// 	const db = database.db($(process.env.MONGODB_DATABASE));
   
 app.post('/share', (req, res) => {
+	console.log('Handling share request1...');
 	if (!req.session.authenticated) {
 	  res.redirect('/login');
 	  return;
 	}
 	
-	const { title, description,street, city, postCode } = req.body;
+	const { title, description, street, city, postCode } = req.body;
 	const location = `${street}, ${city}, ${postCode}`;
 
   const share = {
@@ -304,6 +307,7 @@ app.post('/share', (req, res) => {
     video: null,
 	userId: req.session.username,
   };
+
   if (req.files && req.files.picture) {
     share.picture = req.files.picture;
   }
@@ -311,18 +315,22 @@ app.post('/share', (req, res) => {
   if (req.files && req.files.video) {
     share.video = req.files.video;
   }
-  const shareCollection = db.collection(req.session.username);
-  shareCollection.insertOne(share)
+  console.log('Handling share request2...');
+  const shareCollection = (req) => {
+	console.log('req.session.username:', req.session.username);
+	return database.db(mongodb_database).collection(req.session.username);
+  };
+  shareCollection(req).insertOne(share)
     .then(result => {
-      console.log('Share added:', result.ops[0]);
-      res.redirect('/share');
+    //   console.log('Share added:', result.ops[0]);
+      res.render('/sharesucceed');
     })
     .catch(error => {
 		console.error('Error adding share:', error);
-		res.status(500).send('Error adding share');
+		res.status(500).send(`Error adding share: ${error.message}`);
 	  });
 });
-  })
+//   })
 
 app.get('/review', (req, res) => {
 	// Add this line to check the request URL and method
