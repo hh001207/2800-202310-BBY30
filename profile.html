@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Document</title>
+        <title>Profile</title>
 
         <!-- Meta tags -->
         <meta charset="UTF-8" />
@@ -26,6 +26,7 @@
 
         <!-- Load styles here -->
         <link rel="stylesheet" href="./styles/skeleton.css" />
+		    <link rel="stylesheet" href="styles/profile.css" />
     </head>
     <body>
         <!-- Navbar -->
@@ -93,21 +94,18 @@
                   </fieldset>
           
                   <div class="d-flex justify-content-end mt-5">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      onclick="editUserInfo()"
-                    >
+                    <button type="button" class="btn btn-secondary" onclick="editUserInfo()">
                       Edit
                     </button>
                     <span style="width: 10px"></span>
                     <button type="button" class="btn btn-info" onclick="saveUserInfo()">
                       Save
                     </button>
+                    <span style="width: 10px"></span>
+                    <button onclick="location.href='sign-out.html'">Sign Out</button>
                   </div>
                 </form>
               </div>
-              <button onclick="location.href='sign-out.html'">Sign Out</button>
             </div>
         <!-- Footer -->
         <footer id="footerPlaceholder"></footer>
