@@ -32,7 +32,7 @@ const shareCollection = (req) => {
 	console.log('req.session.username:', req.session.username);
 	return database.db(mongodb_database).collection(req.session.username);
   };
-  app.use(express.json());
+app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 var mongoStore = MongoStore.create({
@@ -270,6 +270,7 @@ app.get('/share', (req, res) => {
 
 app.post('/share', async (req, res) => {
 	console.log('Handling share request1...');
+	console.log('Request body:', req.body);
 	if (!req.session.authenticated) {
 	  res.redirect('/login');
 	  return;
@@ -287,25 +288,36 @@ app.post('/share', async (req, res) => {
 	userId: req.session.username,
   };
 
-
-  console.log('Handling share request2...');
-  const shareCollection = (req) => {
-	console.log('req.session.username:', req.session.username);
-	return database.db(mongodb_database).collection(req.session.username);
-  };
-
-  console.log('Share object:', share);
-
-  await shareCollection(req).insertOne(share)
-    .then(result => {
+  try {
+    const shareCollection = database.db(mongodb_database).collection('shares');
+    const result = await shareCollection.insertOne(share);
     console.log('Share added:', result.ops[0]);
-      res.render('sharesucceed');
-    })
-    .catch(error => {
-		console.error('Error adding share:', error);
-		res.status(500).send(`Error adding share: ${error.message}`);
-	  });
+
+    res.render('sharesucceed');
+  } catch (error) {
+    console.error('Error adding share:', error);
+    res.status(500).send(`Error adding share: ${error.message}`);
+  }
 });
+
+//   console.log('Handling share request2...');
+//   const shareCollection = (req) => {
+// 	console.log('req.session.username:', req.session.username);
+// 	return database.db(mongodb_database).collection(req.session.username);
+//   };
+ 
+//   console.log('Share object:', share);
+
+//   await shareCollection(req).insertOne(share)
+//     .then(result => {
+//     console.log('Share added:', result.ops[0]);
+//       res.render('sharesucceed');
+//     })
+//     .catch(error => {
+// 		console.error('Error adding share:', error);
+// 		res.status(500).send(`Error adding share: ${error.message}`);
+// 	  });
+// });
 //   })
 
 app.get('/review', (req, res) => {
