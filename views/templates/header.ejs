@@ -26,29 +26,28 @@
 
 		<!-- Load styles here -->
 		<link rel="stylesheet" href="./styles/skeleton.css" />
-		<link rel="stylesheet" href="./styles/map.css" />
 	</head>
-	<body class="container">
-		<!-- Navbar -->
-		<nav id="navbarPlaceholder"></nav>
+	<body>
+		<nav class="navbar bg-body-tertiary">
+			<div class="container-fluid d-flex justify-content-between align-items-center">
+				<!-- Logo -->
+				<img id="logoImg" src="../images/heart-fill.svg" alt="logo" />
 
-		<!-- Body Contents -->
-		<div class="row justify-content-center">
-			<div class="col-lg-3 col-md-4 col-sm-12"></div>
-			<div class="col-lg-6 col-md-4 col-sm-12">
-				<!--
-					This is the div where we should put real map in the future.
-					Right now, I just put img instead of real map.
-				-->
-				<div id="map"><img src="/images/map.png" style="width: 100%" /></div>
+				<!-- Name -->
+				<a class="navbar-brand" href="../index.html">VanWatch</a>
+
+				<!-- Drop down menu -->
+				<div class="btn-group">
+					<button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="../images/justify.svg" alt="menuImage" class="d-inline-block align-text-top" />
+					</button>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li><button class="dropdown-item" type="button">dropDownMenu_1</button></li>
+						<li><button class="dropdown-item" type="button">dropDownMenu_2</button></li>
+						<li><button class="dropdown-item" type="button">dropDownMenu_3</button></li>
+					</ul>
+				</div>
 			</div>
-			<div class="col-lg-3 col-md-4 col-sm-12"></div>
-		</div>
-
-		<!-- Footer -->
-		<footer id="footerPlaceholder"></footer>
-
-		<!-- Load scripts here -->
-		<script src="./scripts/skeleton.js"></script>
+		</nav>
 	</body>
 </html>
