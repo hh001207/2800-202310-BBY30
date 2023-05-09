@@ -1,8 +1,12 @@
 
       <%- include("templates/header") %> 
-      <div class="container" >
+
+      <head>
+      <link rel="stylesheet" href="/styles/share.css">
+      </head>
+      <div class="container" py-5 px-3>
         <h1 class="display-4 text-center my-5 text-info">Report your vision, Secure your community!</h1>
-      </div>
+      
     <form class = "row g-3" action="/share" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title:</label>
@@ -42,5 +46,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Report</button>
       </form>
+      </div>
       <%- include("templates/footer") %> 
 
