@@ -24,6 +24,14 @@ app.get('/setting', (req, res) => {
   res.render('setting');
 })
 
+app.get('/signup', (req, res) => {
+  res.render('Signup');
+})
+
+app.get('/Login', (req, res) => {
+  res.render('Login');
+})
+
 app.listen(port, () => {
   console.log("Node application listening on port " + port);
 });
