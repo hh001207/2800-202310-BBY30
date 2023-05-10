@@ -9,7 +9,7 @@ app.set("view engine", "ejs");
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.render('template');
+  res.render('index');
 })
 
 app.get('/main_map', (req, res) => {

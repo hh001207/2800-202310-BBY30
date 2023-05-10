@@ -1,0 +1,30 @@
+<%- include("templates/header") %>
+
+<head>
+	<!-- Load styles here -->
+	<link rel="stylesheet" href="/styles/index.css" />
+</head>
+<body>
+	<!-- Body Contents -->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 d-sm-flex text-center justify-content-center align-items-center mb-3">
+				<div>
+					<h1>VanWatch</h1>
+					<h2>Hello!</h2>
+					<br /><br />
+					<button type="button" class="btn btn-secondary" onclick="window.location.href = '/signup'">Sign Up</button>
+					<button type="button" class="btn btn-secondary" onclick="window.location.href = '/login'">Login</button>
+				</div>
+			</div>
+			<div class="col-sm-8 d-sm-flex flex-sm-column text-center justify-content-center">
+				<!-- Have to change to our main image -->
+				<img src="/images/justify.svg" class="img-fluid align-self-center w-100" alt="main_image" />
+			</div>
+		</div>
+	</div>
+
+	<!-- Load scripts here -->
+</body>
+
+<%- include("templates/footer") %>
