@@ -28,8 +28,28 @@ app.get('/signup', (req, res) => {
   res.render('Signup');
 })
 
-app.get('/Login', (req, res) => {
+app.get('/login', (req, res) => {
   res.render('Login');
+})
+
+app.get('/report', (req, res) => {
+  res.render('report');
+})
+
+app.get('/report_succeed', (req, res) => {
+  res.render('report_succeed');
+})
+
+app.get('/profile', (req, res) => {
+  res.render('profile');
+})
+
+app.get('/detail', (req, res) => {
+  res.render('detail');
+})
+
+app.get('/about_contact', (req, res) => {
+  res.render('about_contact');
 })
 
 app.listen(port, () => {
