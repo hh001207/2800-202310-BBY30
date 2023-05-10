@@ -1,3 +1,4 @@
+// for testing my Code, I keep the code in this file;however, the main function is for user report crime issues.
 require("./units.js");
 
 require('dotenv').config();
@@ -257,18 +258,18 @@ function requireAuth(req, res, next) {
 	}
   }
   
-app.use('/share', requireAuth);
+app.use('/report', requireAuth);
 
-app.get('/sharesucceed', (req, res) => {
-	res.render('sharesucceed');
+app.get('/reportsucceed', (req, res) => {
+	res.render('reportsucceed');
   });
   
 
-app.get('/share', (req, res) => {
-	res.render('share'); 
+app.get('/report', (req, res) => {
+	res.render('report'); 
   });
 
-app.post('/share', async (req, res) => {
+app.post('/report', async (req, res) => {
 	console.log('Handling share request1...');
 	console.log('Request body:', req.body);
 	if (!req.session.authenticated) {
@@ -291,34 +292,15 @@ app.post('/share', async (req, res) => {
   try {
     const shareCollection = database.db(mongodb_database).collection('shares');
     const result = await shareCollection.insertOne(share);
-    console.log('Share added:', result.ops[0]);
 
-    res.render('sharesucceed');
+    res.render('reportsucceed');
   } catch (error) {
     console.error('Error adding share:', error);
     res.status(500).send(`Error adding share: ${error.message}`);
   }
 });
 
-//   console.log('Handling share request2...');
-//   const shareCollection = (req) => {
-// 	console.log('req.session.username:', req.session.username);
-// 	return database.db(mongodb_database).collection(req.session.username);
-//   };
- 
-//   console.log('Share object:', share);
 
-//   await shareCollection(req).insertOne(share)
-//     .then(result => {
-//     console.log('Share added:', result.ops[0]);
-//       res.render('sharesucceed');
-//     })
-//     .catch(error => {
-// 		console.error('Error adding share:', error);
-// 		res.status(500).send(`Error adding share: ${error.message}`);
-// 	  });
-// });
-//   })
 
 app.get('/review', (req, res) => {
 	// Add this line to check the request URL and method
