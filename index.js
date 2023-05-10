@@ -32,6 +32,11 @@ app.get('/Login', (req, res) => {
   res.render('Login');
 })
 
+app.get('/contact', (req, res) => {
+  res.render('Contact');
+})
+
+
 app.listen(port, () => {
   console.log("Node application listening on port " + port);
 });
