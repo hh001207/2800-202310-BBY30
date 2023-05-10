@@ -16,6 +16,10 @@ app.get('/main_map', (req, res) => {
   res.render('main_map');
 })
 
+app.get('/main_list', (req, res) => {
+  res.render('main_list');
+})
+
 app.get('/setting', (req, res) => {
   res.render('setting');
 })
