@@ -32,7 +32,24 @@
 		<!-- Navbar -->
 		<nav id="navbarPlaceholder"></nav>
 
-		<!-- Body Contents -->
+		<header class="d-flex justify-content-center py-3">
+			<h1>Register Here!</h1>
+	</header>
+	<form action="/register_user" method="post">
+			<div class="mb-3">
+					<label class="form-label">First Name</label>
+					<input name="firstname" type="text" class="form-control" id="firstname">
+			</div>
+			<div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Email address</label>
+					<input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+			</div>
+			<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Password</label>
+					<input name="password" type="password" class="form-control" id="exampleInputPassword1">
+			</div>
+			<button type="submit" class="btn btn-primary">Make Account</button>
+	</form>
 
 		<!-- Footer -->
 		<footer id="footerPlaceholder"></footer>
