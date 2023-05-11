@@ -34,6 +34,25 @@ const settingRouter = require('./routes/setting.js');
 const signupRouter = require('./routes/signup.js');
 const reportSucceedRouterRouter = require('./routes/report_succeed.js');
 
+const userCollection = database.db(mongodb_database).collection('users');
+const shareCollection = (req) => {
+	console.log('req.session.username:', req.session.username);
+	return database.db(mongodb_database).collection(req.session.username);
+  };
+  var mongoStore = MongoStore.create({
+    mongoUrl: `mongodb+srv://${mongodb_user}:${mongodb_password}@${mongodb_host}/sessions`,
+    crypto: {
+         secret: mongodb_session_secret
+  }
+}); 
+app.use(session({
+  secret: node_session_secret,
+      store: mongoStore,
+      saveUninitialized: false,
+  resave: true,
+}
+));
+
 app.get('/', homeRouter);
 
 app.get('/main_map', mainMapRouter);
