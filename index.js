@@ -42,11 +42,6 @@ app.get('/detail', detailRouter);
 
 app.get('/about_contact', aboutContactRouter);
 
-app.get('/contact', (req, res) => {
-  res.render('Contact');
-})
-
-
 app.listen(port, () => {
   console.log("Node application listening on port " + port);
 });
