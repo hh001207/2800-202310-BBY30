@@ -6,51 +6,41 @@ const port = process.env.PORT || 3030;
 
 app.set("view engine", "ejs");
 
-app.use(express.static('public'));
+app.use(express.static('./public'));
 
-app.get('/', (req, res) => {
-  res.render('index');
-})
+const homeRouter = require('./routes/home.js');
+const mainMapRouter = require('./routes/main_map.js');
+const mainListRouter = require('./routes/main_list.js');
+const aboutContactRouter = require('./routes/about_contact.js');
+const detailRouter = require('./routes/detail.js');
+const loginRouter = require('./routes/login.js');
+const profileRouter = require('./routes/profile.js');
+const reportRouter = require('./routes/report.js');
+const settingRouter = require('./routes/setting.js');
+const signupRouter = require('./routes/signup.js');
+const reportSucceedRouterRouter = require('./routes/report_succeed.js');
 
-app.get('/main_map', (req, res) => {
-  res.render('main_map');
-})
+app.get('/', homeRouter);
 
-app.get('/main_list', (req, res) => {
-  res.render('main_list');
-})
+app.get('/main_map', mainMapRouter);
 
-app.get('/setting', (req, res) => {
-  res.render('setting');
-})
+app.get('/main_list', mainListRouter);
 
-app.get('/signup', (req, res) => {
-  res.render('Signup');
-})
+app.get('/setting', settingRouter);
 
-app.get('/login', (req, res) => {
-  res.render('Login');
-})
+app.get('/signup', signupRouter);
 
-app.get('/report', (req, res) => {
-  res.render('report');
-})
+app.get('/login', loginRouter);
 
-app.get('/report_succeed', (req, res) => {
-  res.render('report_succeed');
-})
+app.get('/report', reportRouter);
 
-app.get('/profile', (req, res) => {
-  res.render('profile');
-})
+app.get('/report_succeed', reportSucceedRouterRouter);
 
-app.get('/detail', (req, res) => {
-  res.render('detail');
-})
+app.get('/profile', profileRouter);
 
-app.get('/about_contact', (req, res) => {
-  res.render('about_contact');
-})
+app.get('/detail', detailRouter);
+
+app.get('/about_contact', aboutContactRouter);
 
 app.listen(port, () => {
   console.log("Node application listening on port " + port);
