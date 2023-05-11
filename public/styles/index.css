@@ -5,3 +5,22 @@ nav {
 footer {
   margin-top: 50px;
 }
+
+.carousel-item img {
+  border-radius: 15%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.carousel-item {
+  height: 100%;
+  width: 100%;
+}
+
+.index_button {
+  margin-bottom: 25px;
+}
+
+.card {
+  border: none;
+}
