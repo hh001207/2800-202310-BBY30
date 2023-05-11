@@ -6,19 +6,17 @@ const port = process.env.PORT || 3030;
 
 app.set("view engine", "ejs");
 
-app.use(express.static('public'));
+app.use(express.static('./public'));
 
-app.get('/', (req, res) => {
-  res.render('index');
-})
+const homeRouter = require('./routes/home.js');
+const mainMapRouter = require('./routes/main_map.js');
+const mainListRouter = require('./routes/main_list.js');
 
-app.get('/main_map', (req, res) => {
-  res.render('main_map');
-})
+app.get('/', homeRouter);
 
-app.get('/main_list', (req, res) => {
-  res.render('main_list');
-})
+app.get('/main_map', mainMapRouter);
+
+app.get('/main_list', mainListRouter);
 
 app.get('/setting', (req, res) => {
   res.render('setting');
