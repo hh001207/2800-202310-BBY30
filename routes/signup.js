@@ -58,6 +58,10 @@ router.post('/register_user', async (req, res) => {
 
 	req.session.authenticated = true;
 	req.session.username = username;
+	req.session.firstname = firstname;
+	req.session.lastname = lastname;
+	req.session.email = email;
+	req.session.password = password;
 	req.session.cookie.maxAge = expireTime;
 
 	res.redirect('/');
