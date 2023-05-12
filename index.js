@@ -1,5 +1,5 @@
 const express = require('express');
-
+require("./units.js");
 const app = express();
 require('dotenv').config();
 const session = require('express-session');
@@ -16,7 +16,7 @@ const mongodb_database = process.env.MONGODB_DATABASE;
 const mongodb_session_secret = process.env.MONGODB_SESSION_SECRET;
 const node_session_secret = process.env.NODE_SESSION_SECRET;
 
-var {database} = include('./scripts/databaseConnection');
+var {database} = include('databaseConnection');
 
 app.set("view engine", "ejs");
 
