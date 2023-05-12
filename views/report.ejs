@@ -1,0 +1,51 @@
+
+      <%- include("templates/header") %> 
+
+      <head>
+      <link rel="stylesheet" href="/styles/report.css">
+      </head>
+      <div class="container" py-5 px-3>
+        <h1 class="display-4 text-center my-5 text-info">Report your vision, Secure your community!</h1>
+      
+    <form class = "row g-3" action="/report" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <div class="input-group">
+                <select name="title" id="title" class="form-select" aria-label="Title">
+                    <option value="Theft">Theft</option>
+                    <option value="Rubbery">Rubbery</option>
+                    <option value="Home Invasion">Home Invasion</option>
+                    <option value="Car Accident">Car Accident</option>
+                    <option value="Other">Other</option>
+                </select>
+                <input type="text" name="other_title" id="other_title" class="form-control d-none" placeholder="Enter Title">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location:</label>
+            <div class="row">
+              <div class="col-md-4">
+                <input type="text" name="street" id="street" class="form-control" placeholder="Street" required />
+              </div>
+              <div class="col-md-4">
+                <input type="text" name="city" id="city" class="form-control" placeholder="City" required />
+              </div>
+              <div class="col-md-4">
+                <input type="text" name="postCode" id="postCode" class="form-control" placeholder="Post Code" required />
+              </div>
+            </div>
+          </div>
+          
+        <div class="mb-3">
+          <label for="description" class="form-label">Description:</label>
+          <textarea name="description" id="description" class="form-control" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="picture" class="form-label">Picture:</label>
+          <input type="file" name="picture" id="picture" class="form-control" accept="image/*" />
+        </div>
+        <button type="submit" class="btn btn-primary">Report</button>
+      </form>
+      </div>
+      <%- include("templates/footer") %> 
+

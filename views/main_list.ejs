@@ -1,0 +1,49 @@
+<%- include("templates/header") %>
+
+<head>
+	<!-- Load styles here -->
+	<link rel="stylesheet" href="/styles/main_list.css" />
+</head>
+<body>
+	<!-- Body Contents -->
+	<div class="container">
+		<h1 class="text-center">Report list</h1>
+		<ul class="list-group list-group-flush">
+			<!-- this is sample list. after connect to the database, will change code to load data by using loop -->
+			<li class="list-group-item" onclick="window.location.href = '/detail'">
+        <div class="row mt-3 mb-3">
+          <div class="col-4">
+            <img class="postImg" class="img-fluid align-self-center" src="/images/map.png" alt="sampleimg1" />
+          </div>
+          <div class="col-8">
+            <h2>sample list 1 title</h2>
+				    <p>sample content 1 description</p>
+        </div>
+			</li>
+			<li class="list-group-item" onclick="window.location.href = '/detail'">
+        <div class="row mt-3 mb-3">
+          <div class="col-4">
+            <img class="postImg" class="img-fluid align-self-center" src="/images/heart-fill.svg" alt="sampleimg2" />
+          </div>
+          <div class="col-8">
+            <h2>sample list 2 title</h2>
+				    <p>sample content 2 description</p>
+        </div>
+			</li>
+			<li class="list-group-item" onclick="window.location.href = '/detail'">
+        <div class="row mt-3 mb-3">
+          <div class="col-4">
+            <img class="postImg" class="img-fluid align-self-center" src="/images/justify.svg" alt="sampleimg3" />
+          </div>
+          <div class="col-8">
+            <h2>sample list 3 title</h2>
+				    <p>sample content 3 description</p>
+        </div>
+			</li>
+		</ul>
+	</div>
+
+	<!-- Load scripts here -->
+</body>
+
+<%- include("templates/footer") %>
