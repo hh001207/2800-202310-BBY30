@@ -22,10 +22,10 @@ router.post('/loggingin', async (req, res) => {
 	var email = req.body.email;
 	var password = req.body.password;
 
-	const schema = Joi.string().max(20).required();
+	const schema = Joi.string().required();
 	const validationResult = schema.validate(email);
 	if (validationResult.error != null) {
-		res.render('loginError', { error: `${validationResult.error.message}` });
+		res.render('error.ejs', { error: `${validationResult.error.message}` });
 		return;
 	}
 
@@ -33,7 +33,7 @@ router.post('/loggingin', async (req, res) => {
 
 	console.log(result);
 	if (result.length === 0) {
-		res.render('loginError', { error: 'Invalid email or password' });
+		res.render('error', { error: 'Invalid email or password' });
 		return;
 	} else if (result.length > 1) {
 		res.redirect('/loggedin');
@@ -50,7 +50,7 @@ router.post('/loggingin', async (req, res) => {
 		res.redirect('/loggedin');
 		return;
 	} else {
-		res.render('loginError', { error: 'Invalid password', authenticated: req.session.authenticated });
+		res.render('error', { error: 'Invalid password', authenticated: req.session.authenticated });
 		return;
 	}
 });
