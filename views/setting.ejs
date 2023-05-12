@@ -68,7 +68,10 @@
 							<div class="collapse" id="collapseChangePassword">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item">
-										<input id="change_password" type="password" placeholder="new password">
+										<form action="/change_password" method="post">
+											<input name="new_password" type="password" placeholder="new password" required>
+											<button type="submit">Submit</button>
+										</form>
 									</li>
 								</ul>
 							</div>
