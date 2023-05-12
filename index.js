@@ -22,25 +22,104 @@ app.set("view engine", "ejs");
 
 app.use(express.static('./public'));
 
-app.get('/', (req, res) => {
-  res.render('index');
-})
+const homeRouter = require('./routes/home.js');
+const mainMapRouter = require('./routes/main_map.js');
+const mainListRouter = require('./routes/main_list.js');
+const aboutContactRouter = require('./routes/about_contact.js');
+const detailRouter = require('./routes/detail.js');
+const loginRouter = require('./routes/login.js');
+const profileRouter = require('./routes/profile.js');
+const reportRouter = require('./routes/report.js');
+const settingRouter = require('./routes/setting.js');
+const signupRouter = require('./routes/signup.js');
+const reportSucceedRouterRouter = require('./routes/report_succeed.js');
 
-app.get('/main_map', (req, res) => {
-  res.render('main_map');
-})
+const userCollection = database.db(mongodb_database).collection('users');
+const shareCollection = (req) => {
+	console.log('req.session.username:', req.session.username);
+	return database.db(mongodb_database).collection(req.session.username);
+  };
+  var mongoStore = MongoStore.create({
+    mongoUrl: `mongodb+srv://${mongodb_user}:${mongodb_password}@${mongodb_host}/sessions`,
+    crypto: {
+        secret: mongodb_session_secret
+  }
+}); 
+app.use(session({
+  secret: node_session_secret,
+      store: mongoStore,
+      saveUninitialized: false,
+  resave: true,
+}
+));
 
-app.get('/main_list', (req, res) => {
-  res.render('main_list');
-})
+function sessionValidation(req, res, next) {
+  if (isValidSession(req)) {
+      next();
+  }
+  else {
+      res.redirect('/login');
+  }
+}
 
-app.get('/setting', (req, res) => {
-  res.render('setting');
-})
+app.get('/', homeRouter);
 
-app.get('/signup', (req, res) => {
-  res.render('Signup');
-})
+app.get('/main_map', mainMapRouter);
+
+app.get('/main_list', mainListRouter);
+
+app.get('/setting', settingRouter);
+
+app.get('/signup', signupRouter);
+
+app.get('/login', loginRouter);
+
+app.get('/report', reportRouter);
+
+app.get('/report_succeed', reportSucceedRouterRouter);
+
+app.get('/profile', profileRouter);
+
+app.get('/detail', detailRouter);
+
+app.post('/loggingin', async (req, res) => {
+  var email = req.body.email;
+  var password = req.body.password;
+
+  const schema = Joi.string().max(20).required();
+  const validationResult = schema.validate(email);
+  if (validationResult.error != null) {
+      const errorMessage = validationResult.error.details[0].message;
+      console.log(validationResult.error);
+      res.render("error.ejs", { error: errorMessage, tryAgainLink: "/login",  navLinks: navLinks, currentURL: urlencoded.parse(req.url).pathname });
+      return;
+  }
+
+  const result = await userCollection.findOne({ email });
+
+  console.log(result);
+  if (!result) {
+      console.log("user not found");
+      res.render("error.ejs", { error: "invalid email", tryAgainLink: "/login" , navLinks: navLinks, currentURL: urlencoded.parse(req.url).pathname });
+      return;
+  }
+  if (await bcrypt.compare(password, result.password)) {
+      console.log("correct password");
+      req.session.authenticated = true;
+      req.session.username = result.username;
+      req.session.user_type = result.user_type;
+      req.session.cookie.maxAge = expireTime;
+
+      res.redirect('/members');
+      return;
+  }
+  else {
+      console.log("incorrect password");
+      res.render("error.ejs", { error: "incorrect password", tryAgainLink: "/login" , navLinks: navLinks, currentURL: urlencoded.parse(req.url).pathname });
+      return;
+  }
+});
+
 
 app.get('/about_contact', aboutContactRouter);
 
