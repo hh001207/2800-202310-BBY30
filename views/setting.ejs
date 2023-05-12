@@ -2,55 +2,83 @@
 
 <head>
 	<!-- Load styles here -->
-  <link rel="stylesheet" href="/styles/setting.css" />
+	<link rel="stylesheet" href="/styles/setting.css" />
 </head>
 <body>
 	<!-- Body Contents -->
 	<div class="container">
-	<p id="setting" class="h3 text-center">Setting</p>
-	<div class="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-6">
-			<ul class="list-group list-group-flush">
-				<!-- other version: <ul class="list-group"> -->
-				<li
-					class="list-group-item"
-					data-bs-toggle="collapse"
-					data-bs-target="#collapseAlert"
-					aria-expanded="false"
-					aria-controls="collapseAlert"
-				>
-					<strong>Alert</strong>
-				</li>
+		<p id="setting" class="h3 text-center">Setting</p>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<ul class="list-group list-group-flush">
+					<!-- other version: <ul class="list-group"> -->
+					<li
+						class="list-group-item"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseAlert"
+						aria-expanded="false"
+						aria-controls="collapseAlert"
+					>
+						<strong>Alert</strong>
+					</li>
 
-				<div class="collapse" id="collapseAlert">
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">On/Off</li>
-						<li class="list-group-item">Alert sound</li>
-						<li class="list-group-item">Alert distance</li>
-					</ul>
-				</div>
+					<div class="collapse" id="collapseAlert">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">On/Off</li>
+							<li class="list-group-item">Alert sound</li>
+							<li class="list-group-item">Alert distance</li>
+						</ul>
+					</div>
 
-				<li
-					class="list-group-item"
-					data-bs-toggle="collapse"
-					data-bs-target="#collapseNotification"
-					aria-expanded="false"
-					aria-controls="collapseThird"
-				>
-					<strong>Notification</strong>
-				</li>
+					<li
+						class="list-group-item"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseNotification"
+						aria-expanded="false"
+						aria-controls="collapseThird"
+					>
+						<strong>Notification</strong>
+					</li>
 
-				<div class="collapse" id="collapseNotification">
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Notification setting collapse</li>
-					</ul>
-				</div>
-			</ul>
+					<div class="collapse" id="collapseNotification">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">Notification setting collapse</li>
+						</ul>
+					</div>
+
+					<li
+						class="list-group-item"
+						data-bs-toggle="collapse"
+						data-bs-target="#collapseAccount"
+						aria-expanded="false"
+						aria-controls="collapseThird"
+					>
+						<strong>Account</strong>
+					</li>
+
+					<div class="collapse" id="collapseAccount">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item"
+							data-bs-toggle="collapse"
+							data-bs-target="#collapseChangePassword"
+							aria-expanded="false"
+							aria-controls="collapseThird"">Change password</li>
+
+							<div class="collapse" id="collapseChangePassword">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item">
+										<input id="change_password" type="password" placeholder="new password">
+									</li>
+								</ul>
+							</div>
+						</ul>
+					</div>
+				</ul>
+			</div>
+			<div class="col-md-3"></div>
 		</div>
-		<div class="col-md-3"></div>
 	</div>
-</div>
 
 	<!--
 		toggle switch turned off
@@ -67,7 +95,6 @@
 	-->
 
 	<!-- Load scripts here -->
-
 </body>
 
 <%- include("templates/footer") %>
