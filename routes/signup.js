@@ -20,6 +20,8 @@ router.get('/signup', (req, res) => {
 
 router.post('/register_user', async (req, res) => {
 	var username = req.body.username;
+	var firstname = req.body.username;
+	var lastname = req.body.lastname;
 	var email = req.body.email;
 	var password = req.body.password;
 
@@ -30,11 +32,13 @@ router.post('/register_user', async (req, res) => {
 
 	const schema = Joi.object({
 		username: Joi.string().alphanum().max(20).required(),
+		firstname: Joi.string().required(),
+		lastname: Joi.string().required(),
 		email: Joi.string().email().required(),
 		password: Joi.string().max(20).required(),
 	});
 
-	const validationResult = schema.validate({ username, email, password });
+	const validationResult = schema.validate({ username, firstname, lastname, email, password });
 	if (validationResult.error != null) {
 		console.log(validationResult.error);
 		res.redirect('/signup');
@@ -45,6 +49,8 @@ router.post('/register_user', async (req, res) => {
 
 	await userCollection.insertOne({
 		username: username,
+		firstname: firstname,
+		lastname: lastname,
 		email: email,
 		password: hashedPassword,
 	});
