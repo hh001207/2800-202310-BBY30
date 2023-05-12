@@ -29,7 +29,7 @@ router.post('/loggingin', async (req, res) => {
 		return;
 	}
 
-	const result = await userCollection.find({ email: email }).project({ username: 1, password: 1, user_type: 1, _id: 1 }).toArray();
+	const result = await userCollection.find({ email: email }).project({ username: 1, password: 1, firstname: 1, lastname: 1 }).toArray();
 
 	console.log(result);
 	if (result.length === 0) {
@@ -41,9 +41,15 @@ router.post('/loggingin', async (req, res) => {
 	}
 	if (await bcrypt.compare(password, result[0].password)) {
 		console.log('correct password');
+		console.log(result[0].firstname);
+		console.log(result[0].lastname);
+
 		req.session.authenticated = true;
 		req.session.email = email;
+		req.session.firstname = result[0].firstname;
+		req.session.lastname = result[0].lastname;
 		req.session.username = result[0].username;
+		req.session.password = result[0].password;
 		req.session.user_type = result[0].user_type;
 		req.session.cookie.maxAge = expireTime;
 
