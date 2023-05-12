@@ -22,16 +22,19 @@ router.post('/loggingin', async (req, res) => {
 	var email = req.body.email;
 	var password = req.body.password;
 
+	
+	console.log(password);
 	const schema = Joi.string().required();
 	const validationResult = schema.validate(email);
 	if (validationResult.error != null) {
-		res.render('error.ejs', { error: `${validationResult.error.message}` });
+		res.render('error', { error: `${validationResult.error.message}` });
 		return;
 	}
 
 	const result = await userCollection.find({ email: email }).project({ username: 1, password: 1, firstname: 1, lastname: 1 }).toArray();
 
 	console.log(result);
+	
 	if (result.length === 0) {
 		res.render('error', { error: 'Invalid email or password' });
 		return;
@@ -41,8 +44,6 @@ router.post('/loggingin', async (req, res) => {
 	}
 	if (await bcrypt.compare(password, result[0].password)) {
 		console.log('correct password');
-		console.log(result[0].firstname);
-		console.log(result[0].lastname);
 
 		req.session.authenticated = true;
 		req.session.email = email;
@@ -55,6 +56,7 @@ router.post('/loggingin', async (req, res) => {
 		res.redirect('/loggedin');
 		return;
 	} else {
+		console.log(result[0].password);
 		res.render('error', { error: 'Invalid password', authenticated: req.session.authenticated });
 		return;
 	}

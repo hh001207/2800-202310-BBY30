@@ -52,7 +52,7 @@ router.post('/register_user', async (req, res) => {
 		firstname: firstname,
 		lastname: lastname,
 		email: email,
-		password: password,
+		password: hashedPassword,
 	});
 	console.log('Inserted user');
 
@@ -61,7 +61,7 @@ router.post('/register_user', async (req, res) => {
 	req.session.firstname = firstname;
 	req.session.lastname = lastname;
 	req.session.email = email;
-	req.session.password = password;
+	req.session.password = hashedPassword;
 	req.session.cookie.maxAge = expireTime;
 
 	res.redirect('/');
