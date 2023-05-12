@@ -20,12 +20,12 @@ router.get('/signup', (req, res) => {
 
 router.post('/register_user', async (req, res) => {
 	var username = req.body.username;
-	var firstname = req.body.username;
+	var firstname = req.body.firstname;
 	var lastname = req.body.lastname;
 	var email = req.body.email;
 	var password = req.body.password;
 
-	if (!username || !email || !password) {
+	if (!username || !email || !password || !firstname || !lastname) {
 		res.send(`All fields are required. <br><br>Please <a href='/signup'>try again</a>`);
 		return;
 	}
