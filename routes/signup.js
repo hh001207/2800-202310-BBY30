@@ -52,7 +52,7 @@ router.post('/register_user', async (req, res) => {
 		firstname: firstname,
 		lastname: lastname,
 		email: email,
-		password: hashedPassword,
+		password: password,
 	});
 	console.log('Inserted user');
 

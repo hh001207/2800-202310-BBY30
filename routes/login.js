@@ -50,7 +50,6 @@ router.post('/loggingin', async (req, res) => {
 		req.session.lastname = result[0].lastname;
 		req.session.username = result[0].username;
 		req.session.password = result[0].password;
-		req.session.user_type = result[0].user_type;
 		req.session.cookie.maxAge = expireTime;
 
 		res.redirect('/loggedin');
