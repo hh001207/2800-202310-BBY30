@@ -69,7 +69,10 @@ router.post('/reporting', async (req, res) => {
   try {
     const shareCollection = database.db(mongodb_database).collection('shares');
     const result = await shareCollection.insertOne(share);
+    const insertedReportId = result.insertedId;
     res.redirect('/report_succeed');
+    // res.render('report_succeed.ejs', { insertedReportId });
+
   } catch (error) {
     console.error('Error adding share:', error);
     res.status(500).send(`Error adding share: ${error.message}`);
