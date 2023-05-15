@@ -80,6 +80,8 @@ app.get('/login', loginRouter);
 
 app.post('/loggingin', loginRouter);
 
+app.post('/reporting', reportRouter);
+
 app.get('/loggedin', loginRouter);
 
 app.get('/logout', loginRouter);
