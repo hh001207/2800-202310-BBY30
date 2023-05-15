@@ -1,34 +1,54 @@
-function editUserInfo() {
-    document.getElementById("personalInfoFields").removeAttribute("disabled");
-  }
-  
-  function saveUserInfo() {
-    const username = document.getElementById("usernameInput").value;
-    const firstname = document.getElementById("nameInput").value;
-    const lastname = document.getElementById("nameInput").value;
-    const gender = document.getElementById("genderInput").value;
-    const age = document.getElementById("ageInput").value;
-    const job = document.getElementById("jobInput").value;
-    const email = document.getElementById("emailInput").value;
-    const password = document.getElementById("password").value;
+window.onload = () => {
+  console.log(document.querySelector(".btn-edit"));
+  console.log(document.querySelector("#profile-form"));
 
-    currentUser
-    .update({
-      username: userName,
-      firstname: firstname,
-      lastname: lastname,
-      gender: gender,
-      age: age,
-      job: job,
-      email: email,
-      password: password
-    })
-    .then(() => {
-      console.log("Document successfully updated!");
-    });
-  document.getElementById("personalInfoFields").disabled = true;
-  }
-  
-//   function userSession () {
-//     if (req.session.authenticated)
-//   }
+  document.querySelector(".btn-edit").addEventListener("click", () => {
+      document.getElementById("personalInfoFields").removeAttribute("disabled");
+  });
+
+  document.querySelector("#profile-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const username = document.querySelector("#usernameInput").value;
+      const firstname = document.querySelector("#firstnameInput").value;
+      const lastname = document.querySelector("#lastnameInput").value;
+      const gender = document.querySelector("#genderInput").value; // Move it here
+      const age = document.querySelector("#ageInput").value;
+      const job = document.querySelector("#jobInput").value;
+      const email = document.querySelector("#emailInput").value;
+
+      const payload = {
+          username,
+          firstname,
+          lastname,
+          gender,
+          age,
+          job,
+          email
+      };
+
+      fetch("/save", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+      })
+          .then((response) => {
+              if (!response.ok) {
+                  throw new Error("Error occurred while saving the profile");
+              }
+              return response.json();
+          })
+          .then((updatedUser) => {
+            document.getElementById("usernameInput").value = updatedUser.username;
+            document.getElementById("firstnameInput").value = updatedUser.firstname;
+            document.getElementById("lastnameInput").value = updatedUser.lastname;
+            document.getElementById("genderInput").value = updatedUser.gender;
+            document.getElementById("ageInput").value = updatedUser.age;
+            document.getElementById("jobInput").value = updatedUser.job;
+            document.getElementById("emailInput").value = updatedUser.email;
+            
+            document.getElementById("personalInfoFields").setAttribute("disabled", "disabled");
+
+          })
+          .catch((err) => console.error(err));
+  });
+};
