@@ -20,6 +20,7 @@ router.get('/profile', (req, res) => {
     job: req.session.job,  // Add this line
     email: req.session.email,
     password: req.session.password,
+    authenticated: !!req.session.username,
   });
 });
 
