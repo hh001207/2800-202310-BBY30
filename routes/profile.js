@@ -4,25 +4,6 @@ const mongodb_database = process.env.MONGODB_DATABASE;
 const { database } = require('../databaseConnection');
 const userCollection = database.db(mongodb_database).collection('users');
 router.use(express.urlencoded({ extended: false }));
-<<<<<<< HEAD
-const ObjectId = require('mongodb').ObjectId;
-
-// GET route to render the profile page
-router.get('/profile', (req, res) => {
-	var isAuthenticated = req.session.authenticated;
-	if (isAuthenticated) {
-		res.render('profile.ejs', {
-			username: req.session.username,
-			firstname: req.session.firstname,
-			lastname: req.session.lastname,
-			email: req.session.email,
-			password: req.session.password,
-			authenticated: isAuthenticated,
-		});
-	} else {
-		res.redirect('/login');
-	}
-=======
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
@@ -40,7 +21,6 @@ router.get('/profile', (req, res) => {
     email: req.session.email,
     password: req.session.password,
   });
->>>>>>> Alex_Chung_profile
 });
 
 router.post("/save", async (req, res) => {
@@ -100,4 +80,5 @@ router.post("/save", async (req, res) => {
   }
 });
 module.exports = router;
+
 
