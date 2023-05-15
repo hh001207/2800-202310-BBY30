@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/report_succeed', (req, res) => {
-  res.render('report_succeed.ejs');
+  var isAuthenticated = req.session.authenticated;
+  res.render('report_succeed.ejs', {authenticated: isAuthenticated });
 });
 
 module.exports = router;

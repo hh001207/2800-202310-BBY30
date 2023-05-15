@@ -48,7 +48,11 @@
 						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/about_contact'">about</button></li>
 						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/profile'">profile</button></li>
 						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/report'">report</button></li>
+						<% if (authenticated) { %>
 						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/logout'">logout</button></li>
+						<% } else { %>
+						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/login'">login</button></li>
+						<% } %>
 					</ul>
 				</div>
 			</div>

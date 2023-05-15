@@ -15,7 +15,8 @@ var { database } = include('databaseConnection');
 const userCollection = database.db(mongodb_database).collection('users');
 
 router.get('/signup', (req, res) => {
-  res.render('signup.ejs');
+	var isAuthenticated = req.session.authenticated;
+  res.render('signup.ejs', {authenticated: isAuthenticated });
 });
 
 router.post('/register_user', async (req, res) => {

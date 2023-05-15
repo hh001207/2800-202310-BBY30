@@ -15,7 +15,8 @@ const userCollection = database.db(mongodb_database).collection('users');
 router.use(express.urlencoded({ extended: false }));
 
 router.get('/login', (req, res) => {
-  res.render('login.ejs');
+	var isAuthenticated = req.session.authenticated;
+  res.render('login.ejs', {authenticated: isAuthenticated });
 });
 
 router.post('/loggingin', async (req, res) => {
