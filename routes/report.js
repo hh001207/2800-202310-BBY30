@@ -41,9 +41,9 @@ router.get('/report', (req, res) => {
 
 
 
-router.get('/report_succeed', (req, res) => {
-	res.render('report_succeed.ejs');
-  });
+// router.get('/report_succeed', (req, res) => {
+// 	res.render('report_succeed.ejs');
+//   });
   
 
 router.post('/reporting', async (req, res) => {
@@ -69,8 +69,7 @@ router.post('/reporting', async (req, res) => {
   try {
     const shareCollection = database.db(mongodb_database).collection('shares');
     const result = await shareCollection.insertOne(share);
-
-    res.render('report_succeed.ejs');
+    res.redirect('/report_succeed');
   } catch (error) {
     console.error('Error adding share:', error);
     res.status(500).send(`Error adding share: ${error.message}`);
