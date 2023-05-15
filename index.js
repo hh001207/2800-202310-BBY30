@@ -31,6 +31,7 @@ const userCollection = database.db(mongodb_database).collection('users');
 
 app.use(express.urlencoded({ extended: false }));
 
+
 var mongoStore = MongoStore.create({
 	mongoUrl: `mongodb+srv://${mongodb_user}:${mongodb_password}@${mongodb_host}/sessions`,
 	crypto: {
@@ -92,6 +93,8 @@ app.get('/profile', profileRouter);
 app.get('/detail', detailRouter);
 
 app.get('/about_contact', aboutContactRouter);
+
+app.use('/', profileRouter);
 
 app.listen(port, () => {
 	console.log('Node application listening on port ' + port);
