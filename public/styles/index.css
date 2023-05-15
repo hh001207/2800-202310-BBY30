@@ -11,8 +11,11 @@
 
 .index_button {
   margin-bottom: 25px;
+  background-color: #679436;
+  color: #EDF7F6;
 }
 
 .card {
   border: none;
+  background-color: #EDF7F6;
 }
