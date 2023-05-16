@@ -64,6 +64,7 @@ const settingRouter = require('./routes/setting.js');
 const signupRouter = require('./routes/signup.js');
 const reportSucceedRouterRouter = require('./routes/report_succeed.js');
 const editreportRouter = require('./routes/edit_report.js');
+const updatereportRouter = require('./routes/update_report.js');
 
 app.get('/', homeRouter);
 
@@ -84,6 +85,8 @@ app.get('/login', loginRouter);
 app.post('/loggingin', loginRouter);
 
 app.post('/reporting', reportRouter);
+
+app.post('/update_report', updatereportRouter);
 
 app.get('/loggedin', loginRouter);
 

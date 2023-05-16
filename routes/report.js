@@ -10,11 +10,6 @@ const mongodb_database = process.env.MONGODB_DATABASE;
 
 var { database } = include('databaseConnection');
 
-const userCollection = database.db(mongodb_database).collection('users');
-const shareCollection = (req) => {
-	console.log('req.session.username:', req.session.username);
-	return database.db(mongodb_database).collection(req.session.username);
-  };
 
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {

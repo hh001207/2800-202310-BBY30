@@ -26,13 +26,13 @@
       <label for="location" class="form-label">Location:</label>
       <div class="row">
         <div class="col-md-4">
-          <input type="text" name="street" id="street" class="form-control" placeholder="Street" value="<%= report.location?.street || '' %>" required />
+          <input type="text" name="street" id="street" class="form-control" placeholder="Street" value="<%= report.location.street || '' %>" required />
         </div>
         <div class="col-md-4">
-          <input type="text" name="city" id="city" class="form-control" placeholder="City" value="<%= report.location?.city || '' %>" required />
+          <input type="text" name="city" id="city" class="form-control" placeholder="City" value="<%= report.location.city || '' %>" required />
         </div>
         <div class="col-md-4">
-          <input type="text" name="postCode" id="postCode" class="form-control" placeholder="Post Code" value="<%= report.location?.postCode || '' %>" required />
+          <input type="text" name="postCode" id="postCode" class="form-control" placeholder="Post Code" value="<%= report.location.postCode || '' %>" required />
         </div>
       </div>
     </div>
