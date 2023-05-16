@@ -22,8 +22,7 @@ router.get('/edit_report', async (req, res) => {
 
     try {
       const reportCollection = database.db(mongodb_database).collection('shares');
-      const report = await reportCollection.findOne({ _id: new ObjectId(reportId) });
-      console.log('report:', report);
+      const report = await reportCollection.findOne({ _id: new ObjectId(reportId), userId: userId });
       if (!report) {
         // Report not found, handle the error
         return res.status(404).send('Report not found');

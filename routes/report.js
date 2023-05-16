@@ -80,7 +80,7 @@ const share = {
     const result = await shareCollection.insertOne(share);  
     const reportId = result.insertedId;
     console.log('Inserted report with ID:', reportId);
-    res.render('report_succeed.ejs', { authenticated: isAuthenticated ,reportId });
+    res.render('report_succeed.ejs', { reportId, authenticated: isAuthenticated});
 
   } catch (error) {
     console.error('Error adding share:', error);
