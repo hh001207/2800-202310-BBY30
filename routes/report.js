@@ -58,7 +58,7 @@ router.post('/reporting', async (req, res) => {
 	const location = `${street}, ${city}, ${postCode}`;
 	console.log('Location:', street, city, postCode);
 
-  const share = {
+const share = {
 	_id: null,
     title: title || '',
     description: description || '',
@@ -67,11 +67,13 @@ router.post('/reporting', async (req, res) => {
   };
 
   try {
+    var isAuthenticated = req.session.authenticated;
     const shareCollection = database.db(mongodb_database).collection('shares');
-    const result = await shareCollection.insertOne(share);
-    const insertedReportId = result.insertedId;
-    res.redirect('/report_succeed');
-    // res.render('report_succeed.ejs', { insertedReportId });
+    const result = await shareCollection.insertOne(share);  
+    const reportId = result.insertedId;
+    console.log('Inserted report with ID:', reportId);
+    // res.redirect('/report_succeed');
+    res.render('report_succeed.ejs', { authenticated: isAuthenticated ,reportId });
 
   } catch (error) {
     console.error('Error adding share:', error);
