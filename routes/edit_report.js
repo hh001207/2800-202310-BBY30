@@ -21,15 +21,16 @@ router.get('/edit_report', async (req, res) => {
     console.log('userId:', userId);
 
     try {
-      const reportCollection = database.db(mongodb_database).collection('shares');
-      const report = await reportCollection.findOne({ _id: new ObjectId(reportId), userId: userId });
+      const shareCollection = database.db(mongodb_database).collection('shares');
+      const report = await shareCollection.findOne({ _id: new ObjectId(reportId), userId: userId });
       if (!report) {
         // Report not found, handle the error
         return res.status(404).send('Report not found');
       }
+      console.log('report:', report);
       var isAuthenticated = req.session.authenticated;
       if (isAuthenticated) {
-      res.render('edit_report.ejs', { report: reportId , authenticated: isAuthenticated});
+      res.render('edit_report.ejs', { report: report , authenticated: isAuthenticated});
       }
     } catch (error) {
       console.error('Error fetching report:', error);

@@ -1,4 +1,5 @@
 require('./utils.js');
+const path = require('path');
 
 require('dotenv').config();
 const express = require('express');
@@ -49,6 +50,7 @@ app.use(
 );
 
 app.use(express.static('./public'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const homeRouter = require('./routes/home.js');
 const mainMapRouter = require('./routes/main_map.js');
