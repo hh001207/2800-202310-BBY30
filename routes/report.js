@@ -61,17 +61,23 @@ router.post('/reporting', upload.single('picture'), async (req, res) => {
 	  return;
 	}
 	
-	const { title, description, street, city, postCode } = req.body;
+	const { type, YEAR, MONTH, DAY, HOUR, MINUTES, description, street, city, postCode } = req.body;
 	const location = `${street}, ${city}, ${postCode}`;
 	console.log('Location:', street, city, postCode);
 
 const share = {
 	_id: null,
-    title: title || '',
-    description: description || '',
+  userId: req.session.username,
+  type: type || '',
+  YEAR: new Date().getFullYear(),
+	MONTH: new Date().getMonth() + 1,
+	DAY: new Date().getDate(),
+  HOUR: new Date().getHours(),
+  MINUTES: new Date().getMinutes(),
+  description: description || '',
 	location: location || '',
   picture: req.file ? req.file.filename : '',
-	userId: req.session.username,
+	
   };
 
   try {

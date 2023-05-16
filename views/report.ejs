@@ -9,16 +9,16 @@
       
     <form class = "row g-3" action="/reporting" method='post' enctype="multipart/form-data">
         <div class="mb-3">
-            <label for="title" class="form-label">Title:</label>
+            <label for="type" class="form-label">type:</label>
             <div class="input-group">
-                <select name="title" id="title" class="form-select" aria-label="Title">
+                <select name="type" id="type" class="form-select" aria-label="type">
                     <option value="Theft">Theft</option>
                     <option value="Rubbery">Rubbery</option>
                     <option value="Home Invasion">Home Invasion</option>
                     <option value="Car Accident">Car Accident</option>
                     <option value="Other">Other</option>
                 </select>
-                <input type="text" name="other_title" id="other_title" class="form-control d-none" placeholder="Enter Title">
+                <input type="text" name="other_type" id="other_type" class="form-control d-none" placeholder="Enter type">
             </div>
         </div>
         <div class="mb-3">
