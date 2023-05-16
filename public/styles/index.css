@@ -15,6 +15,10 @@
   color: #EDF7F6;
 }
 
+.index_button:hover {
+  background-color: #73956F;
+}
+
 .card {
   border: none;
   background-color: #EDF7F6;
