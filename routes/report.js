@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 const router = express.Router();
-
+const multer = require('multer');
 
 const expireTime = 1 * 60 * 60 * 1000;
 
@@ -15,6 +15,18 @@ const shareCollection = (req) => {
 	console.log('req.session.username:', req.session.username);
 	return database.db(mongodb_database).collection(req.session.username);
   };
+
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      // Specify the destination folder where uploaded files should be stored
+      cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+      // Specify how the file should be named
+      cb(null, file.originalname);
+    }
+  });
+  const upload = multer({ storage: storage });
 
 router.use(express.json());
 
@@ -39,14 +51,9 @@ router.get('/report', (req, res) => {
   }
 });
 
-
-
-// router.get('/report_succeed', (req, res) => {
-// 	res.render('report_succeed.ejs');
-//   });
   
 
-router.post('/reporting', async (req, res) => {
+router.post('/reporting', upload.single('picture'), async (req, res) => {
 	console.log('Handling share request1...');
 	console.log('Request body:', req.body);
 	if (!req.session.authenticated) {
@@ -63,6 +70,7 @@ const share = {
     title: title || '',
     description: description || '',
 	location: location || '',
+  picture: req.file ? req.file.filename : '',
 	userId: req.session.username,
   };
 
@@ -72,7 +80,6 @@ const share = {
     const result = await shareCollection.insertOne(share);  
     const reportId = result.insertedId;
     console.log('Inserted report with ID:', reportId);
-    // res.redirect('/report_succeed');
     res.render('report_succeed.ejs', { authenticated: isAuthenticated ,reportId });
 
   } catch (error) {

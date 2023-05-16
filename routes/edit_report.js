@@ -5,17 +5,9 @@ const router = express.Router();
 
 const { ObjectId } = require('mongodb');
 
-const expireTime = 1 * 60 * 60 * 1000;
-
 const mongodb_database = process.env.MONGODB_DATABASE;
 
 var { database } = include('databaseConnection');
-
-const userCollection = database.db(mongodb_database).collection('users');
-const shareCollection = (req) => {
-	console.log('req.session.username:', req.session.username);
-	return database.db(mongodb_database).collection(req.session.username);
-  };
 
 router.use(express.json());
 
@@ -29,8 +21,8 @@ router.get('/edit_report', async (req, res) => {
     console.log('userId:', userId);
 
     try {
-      const shareCollection = database.db(mongodb_database).collection('shares');
-      const report = await shareCollection.findOne({ _id: new ObjectId(reportId), userId: userId });
+      const reportCollection = database.db(mongodb_database).collection('shares');
+      const report = await reportCollection.findOne({ _id: new ObjectId(reportId) });
       console.log('report:', report);
       if (!report) {
         // Report not found, handle the error
@@ -38,14 +30,12 @@ router.get('/edit_report', async (req, res) => {
       }
       var isAuthenticated = req.session.authenticated;
       if (isAuthenticated) {
-      res.render('edit_report.ejs', { report, authenticated: isAuthenticated });
+      res.render('edit_report.ejs', { report: reportId , authenticated: isAuthenticated});
       }
     } catch (error) {
       console.error('Error fetching report:', error);
       res.status(500).send(`Error fetching report: ${error.message}`);
     }
   });
-  
-
 
 module.exports = router;

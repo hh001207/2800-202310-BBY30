@@ -7,7 +7,7 @@
 <div class="container py-5 px-3">
   <h1 class="display-4 text-center my-5 text-info">Edit Report</h1>
 
-  <form class="row g-3" action="/update_report" method="post">
+  <form class="row g-3" action="/update_report" method="post" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="title" class="form-label">Title:</label>
       <div class="input-group">
@@ -26,13 +26,13 @@
       <label for="location" class="form-label">Location:</label>
       <div class="row">
         <div class="col-md-4">
-          <input type="text" name="street" id="street" class="form-control" placeholder="Street" value="<%= report.location.street || '' %>" required />
+          <input type="text" name="street" id="street" class="form-control" placeholder="Street" value="<%= report.location?.street || '' %>" required />
         </div>
         <div class="col-md-4">
-          <input type="text" name="city" id="city" class="form-control" placeholder="City" value="<%= report.location.city || '' %>" required />
+          <input type="text" name="city" id="city" class="form-control" placeholder="City" value="<%= report.location?.city || '' %>" required />
         </div>
         <div class="col-md-4">
-          <input type="text" name="postCode" id="postCode" class="form-control" placeholder="Post Code" value="<%= report.location.postCode || '' %>" required />
+          <input type="text" name="postCode" id="postCode" class="form-control" placeholder="Post Code" value="<%= report.location?.postCode || '' %>" required />
         </div>
       </div>
     </div>
@@ -44,6 +44,10 @@
 
     <div class="mb-3">
       <label for="picture" class="form-label">Picture:</label>
+      <% if (report.picture) { %>
+        <img src="./uploads/<%= report.picture %>" alt="Report Picture" class="img-fluid" />
+        <% } %>
+      
       <input type="file" name="picture" id="picture" class="form-control" accept="image/*" />
     </div>
 
