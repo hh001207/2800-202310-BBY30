@@ -1,8 +1,8 @@
 <%- include("templates/header") %>
 
 <head>
-	<!-- Load styles here -->
-	<link rel="stylesheet" href="/styles/main_list.css" />
+  <!-- Load styles here -->
+  <link rel="stylesheet" href="/styles/main_list.css" />
 </head>
 <style>
 #crimeType {
@@ -11,43 +11,43 @@
 }
 </style>
 <body>
-	<!-- Body Contents -->
-	<div class="container">
-		<h1 class="text-center">Report list</h1>
+  <!-- Body Contents -->
+  <div class="container">
+    <h1 class="text-center">Report list</h1>
 
-		<!-- Filter Form -->
-		<form id="filterForm" action="/filteredReports" method="POST">
-			<div class="row">
+    <!-- Filter Form -->
+    <form id="filterForm" action="/filteredReports" method="POST">
+      <div class="row">
         <div class="col">
-					<label for="neighborhood">Neighborhood</label>
-					<select name="neighborhood" id="neighborhood" class="form-control">
-						<option value="all">All</option>
-						<option value="arbutusRidge">Arbutus Ridge</option>
-						<option value="centralBusinessDistrict">Central Business District</option>
-						<option value="dunbarSouthlands">Dunbar-Southlands</option>
-						<option value="fairview">Fairview</option>
-						<option value="grandviewWoodland">Grandview-Woodland</option>
-						<option value="hastingsSunrise">Hastings-Sunrise</option>
-						<option value="kensingtonCedarCottage">Kensington-Cedar Cottage</option>
-						<option value="kerrisdale">Kerrisdale</option>
-						<option value="killarney">Killarney</option>
-						<option value="kitsilano">Kitsilano</option>
-						<option value="marpole">Marpole</option>
-						<option value="mountPleasant">Mount Pleasant</option>
-						<option value="musqueam">Musqueam</option>
-						<option value="oakridge">Oakridge</option>
-						<option value="renfrewCollingwood">Renfrew-Collingwood</option>
-						<option value="rileyPark">Riley Park</option>
-						<option value="shaughnessy">Shaughnessy</option>
-						<option value="southCambie">South Cambie</option>
-						<option value="stanleyPark">Stanley Park</option>
-						<option value="strathcona">Strathcona</option>
-						<option value="sunset">Sunset</option>
-						<option value="victoriaFraserview">Victoria-Fraserview</option>
-						<option value="westEnd">West End</option>
-						<option value="westPointGrey">West Point Grey</option>
-					</select>
-				</div>
+          <label for="neighborhood">Neighborhood</label>
+          <select name="neighborhood" id="neighborhood" class="form-control">
+            <option value="all">All</option>
+            <option value="arbutusRidge">Arbutus Ridge</option>
+            <option value="centralBusinessDistrict">Central Business District</option>
+            <option value="dunbarSouthlands">Dunbar-Southlands</option>
+            <option value="fairview">Fairview</option>
+            <option value="grandviewWoodland">Grandview-Woodland</option>
+            <option value="hastingsSunrise">Hastings-Sunrise</option>
+            <option value="kensingtonCedarCottage">Kensington-Cedar Cottage</option>
+            <option value="kerrisdale">Kerrisdale</option>
+            <option value="killarney">Killarney</option>
+            <option value="kitsilano">Kitsilano</option>
+            <option value="marpole">Marpole</option>
+            <option value="mountPleasant">Mount Pleasant</option>
+            <option value="musqueam">Musqueam</option>
+            <option value="oakridge">Oakridge</option>
+            <option value="renfrewCollingwood">Renfrew-Collingwood</option>
+            <option value="rileyPark">Riley Park</option>
+            <option value="shaughnessy">Shaughnessy</option>
+            <option value="southCambie">South Cambie</option>
+            <option value="stanleyPark">Stanley Park</option>
+            <option value="strathcona">Strathcona</option>
+            <option value="sunset">Sunset</option>
+            <option value="victoriaFraserview">Victoria-Fraserview</option>
+            <option value="westEnd">West End</option>
+            <option value="westPointGrey">West Point Grey</option>
+          </select>
+        </div>
 
         <div class="col">
           <label for="crimeType">Crime Type</label>
@@ -100,74 +100,59 @@
           </div>
         </div>
 
-				<div class="col">
-					<label for="dateRange">Date Range</label>
-					<select name="dateRange" id="dateRange" class="form-control">
-						<option value="1day">1 Day</option>
-						<option value="1week">1 Week</option>
-						<option value="1month">1 Month</option>
-						<option value="3months">3 Months</option>
-						<option value="6months">6 Months</option>
-						<option value="1year">1 Year</option>
+        <div class="col">
+          <label for="dateRange">Date Range</label>
+          <select name="dateRange" id="dateRange" class="form-control">
+            <option value="1day">1 Day</option>
+            <option value="1week">1 Week</option>
+            <option value="1month">1 Month</option>
+            <option value="3months">3 Months</option>
+            <option value="6months">6 Months</option>
+            <option value="1year">1 Year</option>
             <option value="1year">3 Year</option>
             <option value="1year">5 Year</option>
             <option value="all">All</option>
-					</select>
-				</div>
-				<div class="col">
-					<label for="reportSource">Report Source</label>
-					<select name="reportSource" id="reportSource" class="form-control">
-						<option value="all">All</option>
-						<option value="user">User Report</option>
-						<option value="vpd">VPD History Report</option>
-					</select>
-				</div>
-			</div>
-			<div class="row mt-3">
-				<div class="col text-center">
-					<button type="submit" class="btn btn-primary">Filter Reports</button>
-				</div>
-			</div>
-		</form>
-		<hr/>
+          </select>
+        </div>
+        <div class="col">
+          <label for="reportSource">Report Source</label>
+          <select name="reportSource" id="reportSource" class="form-control">
+            <option value="all">All</option>
+            <option value="user">User Report</option>
+            <option value="vpd">VPD History Report</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col text-center">
+          <button type="submit" class="btn btn-primary">Filter Reports</button>
+        </div>
+      </div>
+    </form>
+    <hr/>
 
-	<div class="container">
-		<ul class="list-group list-group-flush">
-			<!-- this is sample list. after connect to the database, will change code to load data by using loop -->
-			<li class="list-group-item" onclick="window.location.href = '/detail'">
-        <div class="row mt-3 mb-3">
-          <div class="col-4">
-            <img class="postImg" class="img-fluid align-self-center" src="/images/map.png" alt="sampleimg1" />
-          </div>
-          <div class="col-8">
-            <h2>sample list 1 title</h2>
-				    <p>sample content 1 description</p>
-        </div>
-			</li>
-			<li class="list-group-item" onclick="window.location.href = '/detail'">
-        <div class="row mt-3 mb-3">
-          <div class="col-4">
-            <img class="postImg" class="img-fluid align-self-center" src="/images/heart-fill.svg" alt="sampleimg2" />
-          </div>
-          <div class="col-8">
-            <h2>sample list 2 title</h2>
-				    <p>sample content 2 description</p>
-        </div>
-			</li>
-			<li class="list-group-item" onclick="window.location.href = '/detail'">
-        <div class="row mt-3 mb-3">
-          <div class="col-4">
-            <img class="postImg" class="img-fluid align-self-center" src="/images/justify.svg" alt="sampleimg3" />
-          </div>
-          <div class="col-8">
-            <h2>sample list 3 title</h2>
-				    <p>sample content 3 description</p>
-        </div>
-			</li>
-		</ul>
-	</div>
+    <div class="container">
+      <ul class="list-group list-group-flush">
+        <% report_list.forEach(function(crime){ %>
+          <li class="list-group-item" onclick="window.location.href = '/detail/<%= crime._id %>'">
+            <div class="row mt-3 mb-3">
+              <div class="col-4">
+                <img class="postImg" class="img-fluid align-self-center" src="/images/<%= crime.image %>" alt="<%= crime.type %>" />
+              </div>
+              <div class="col-8">
+                <h2><%= crime.type %></h2>
+                <p><%= crime.date %> at <%= crime.neighborhood %></p>
+                <p><%= crime.description %></p>
+              </div>
+            </div>
+          </li>
+        <% }) %>        
+      </ul>
+    </div>
+    
 
-	<!-- Load scripts here -->
+  <!-- Load scripts here -->
 </body>
 
 <%- include("templates/footer") %>
+
