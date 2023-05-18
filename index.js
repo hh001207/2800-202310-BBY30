@@ -64,6 +64,7 @@ const signupRouter = require('./routes/signup.js');
 const reportSucceedRouterRouter = require('./routes/report_succeed.js');
 const editreportRouter = require('./routes/edit_report.js');
 const updatereportRouter = require('./routes/update_report.js');
+const secretReportRouter = require('./routes/secret_report.js');
 
 app.get('/', homeRouter);
 
@@ -103,7 +104,7 @@ app.get('/detail', detailRouter);
 
 app.get('/about_contact', aboutContactRouter);
 
-app.get('/secret_report', reportRouter);
+app.get('/secret_report', secretReportRouter);
 
 app.use('/', profileRouter);
 

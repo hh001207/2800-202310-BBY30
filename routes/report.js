@@ -46,16 +46,6 @@ router.get('/report', (req, res) => {
   }
 });
 
-router.get('/secret_report', (req, res) => {
-  var isAuthenticated = req.session.authenticated;
-  if (isAuthenticated) {
-  res.render('secret_report.ejs', {authenticated: isAuthenticated });
-  } else {
-    res.redirect('/login');
-  }
-});
-
-
 router.post('/reporting', upload.single('picture'), async (req, res) => {
 	console.log('Handling share request1...');
 	console.log('Request body:', req.body);
