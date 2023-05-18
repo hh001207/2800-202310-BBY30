@@ -103,6 +103,8 @@ app.get('/detail', detailRouter);
 
 app.get('/about_contact', aboutContactRouter);
 
+app.get('/secret_report', reportRouter);
+
 app.use('/', profileRouter);
 
 app.get('*', (req, res) => {
