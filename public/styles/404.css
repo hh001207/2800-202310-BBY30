@@ -1,0 +1,23 @@
+.error-container {
+  margin-top: 20%;
+  background-color: #F9FFFE;
+  padding: 20px;
+  border-radius: 8px;
+  }
+  
+  h1 {
+  color: #679436;
+  }
+  
+  p {
+  color: #737373;
+  }
+  
+  .go-back-btn {
+  background-color: #679436;
+  color: #EDF7F6;
+  }
+  
+  .go-back-btn:hover {
+  background-color: #73956F;
+  }

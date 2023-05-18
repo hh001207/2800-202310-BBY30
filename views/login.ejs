@@ -1,19 +1,31 @@
 <%- include("templates/header") %>
 
-<div class="col-md-10 mx-auto col-lg-5">
-  <form class="p-4 p-md-5 border rounded-3 bg-light" action='/loggingin' method='post'>
-    <h1 class="display-4 fw-bold lh-1 mb-3">Please sign in</h1>
-    <br><br>
-    <div class="form-floating mb-3">
-      <input name='email' type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <hr class="my-4">
-  </form>
-</div>
+<head>
+	<!-- Load styles here -->
+	<link rel="stylesheet" href="/styles/signup_login.css" />
+</head>
+<body>
+	<div class="col-md-10 mx-auto col-lg-5 container">
+		<form class="p-4 p-md-5 border rounded-3" action="/loggingin" method="post">
+			<header class="d-flex justify-content-center py-3">
+				<h1 class="mb-1">Log in here!</h1>
+			</header>
+			<hr />
+			<br />
+			<div class="form-floating mb-3">
+				<input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
+				<label for="floatingInput">Email address</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+				<label for="floatingPassword">Password</label>
+			</div>
+			<br />
+			<div class="container d-flex justify-content-center">
+				<button class="submit_button btn" type="submit">Sign in</button>
+			</div>
+		</form>
+	</div>
+</body>
+
 <%- include("templates/footer") %>

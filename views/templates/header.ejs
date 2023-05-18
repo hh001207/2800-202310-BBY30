@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Document</title>
+		<title>VanWatch</title>
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/x-icon" href="/images/logo.ico" />
 
 		<!-- Meta tags -->
 		<meta charset="UTF-8" />
@@ -25,36 +28,58 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 		<!-- Load styles here -->
-		<link rel="stylesheet" href="/styles/skeleton.css" />		
+		<link rel="stylesheet" href="/styles/skeleton.css" />
 	</head>
 	<body>
-		<nav class="navbar bg-body-tertiary mb-3">
+		<nav class="navbar mb-5">
 			<div class="container-fluid d-flex justify-content-between align-items-center">
 				<!-- Logo -->
-				<img id="logoImg" src="/images/heart-fill.svg" alt="logo" />
+				<img id="logoImg" src="/images/logo.png" alt="logo" />
 
 				<!-- Name -->
-				<a class="navbar-brand" href="/">VanWatch</a>
+				<a id="headerName" class="navbar-brand" href="/">VanWatch</a>
 
 				<!-- Drop down menu -->
 				<div class="btn-group">
-					<button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
+					<button id="menuButton" type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
 						<img src="/images/justify.svg" alt="menuImage" class="d-inline-block align-text-top" />
 					</button>
-					<ul class="dropdown-menu dropdown-menu-end">
-						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/main_map'">main_map</button></li>
-						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/main_list'">main_list</button></li>
-						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/setting'">setting</button></li>
-						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/about_contact'">about</button></li>
-						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/profile'">profile</button></li>
-						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/report'">report</button></li>
+					<ul id="dropdown_menu" class="dropdown-menu dropdown-menu-end">
+						<li>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/main_map'">main_map</button>
+						</li>
+						<li>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/main_list'">
+								main_list
+							</button>
+						</li>
+						<li>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/setting'">setting</button>
+						</li>
+						<li>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/about_contact'">
+								about
+							</button>
+						</li>
+						<li>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/profile'">profile</button>
+						</li>
+						<li>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/report'">report</button>
+						</li>
+						<!-- Display logout button if user is loggedin and display login button if user is not loggedin. -->
 						<% if (authenticated) { %>
-						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/logout'">logout</button></li>
+						<li>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/logout'">logout</button>
+						</li>
 						<% } else { %>
-						<li><button class="dropdown-item" type="button" onclick="window.location.href = '/login'">login</button></li>
+						<li>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/login'">login</button>
+						</li>
 						<% } %>
 					</ul>
 				</div>
 			</div>
 		</nav>
-
+	</body>
+</html>
