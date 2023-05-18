@@ -1,0 +1,12 @@
+form {
+  background-color: #F9FFFE;
+}
+
+.submit_button {
+  background-color: #679436;
+  color: #EDF7F6;
+}
+
+.submit_button:hover {
+  background-color: #73956F;
+}

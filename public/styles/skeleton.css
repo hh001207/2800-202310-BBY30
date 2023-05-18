@@ -1,14 +1,37 @@
+body {
+  background-color: #EDF7F6;
+}
+
 /*
 css for navbar and footer
 */
 #logoImg{
   margin-left: 15px;
+  width: 32px;
 }
 
-.contactImg{
+#dropdown_menu {
+  background-color: #F9FFFE;
+}
+
+.contactImg {
+  width: 32px;
   padding-right: 10px;
+  padding-bottom: 5px;
+}
+
+#footerContactUs {
+  margin-left: 5px;
+}
+
+#headerName {
+  padding-left: 10px;
 }
 
 #footerName{
-  padding-left: 45px;
+  padding-left: 50px;
+}
+
+nav, footer {
+  background-color: #73956F;
 }

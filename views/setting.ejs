@@ -59,17 +59,21 @@
 
 					<div class="collapse" id="collapseAccount">
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item"
-							data-bs-toggle="collapse"
-							data-bs-target="#collapseChangePassword"
-							aria-expanded="false"
-							aria-controls="collapseThird"">Change password</li>
+							<li
+								class="list-group-item"
+								data-bs-toggle="collapse"
+								data-bs-target="#collapseChangePassword"
+								aria-expanded="false"
+								aria-controls="collapseThird"
+							>
+								Change password
+							</li>
 
 							<div class="collapse" id="collapseChangePassword">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item">
 										<form action="/change_password" method="post">
-											<input name="new_password" type="password" placeholder="new password" required>
+											<input name="new_password" type="password" placeholder="new password" required />
 											<button type="submit">Submit</button>
 										</form>
 									</li>

@@ -32,7 +32,6 @@ const userCollection = database.db(mongodb_database).collection('users');
 
 app.use(express.urlencoded({ extended: false }));
 
-
 var mongoStore = MongoStore.create({
 	mongoUrl: `mongodb+srv://${mongodb_user}:${mongodb_password}@${mongodb_host}/sessions`,
 	crypto: {
@@ -105,6 +104,12 @@ app.get('/detail', detailRouter);
 app.get('/about_contact', aboutContactRouter);
 
 app.use('/', profileRouter);
+
+app.get('*', (req, res) => {
+	var isAuthenticated = req.session.authenticated;
+	res.status(404);
+	res.render('404', {authenticated: isAuthenticated });
+});
 
 app.listen(port, () => {
 	console.log('Node application listening on port ' + port);
