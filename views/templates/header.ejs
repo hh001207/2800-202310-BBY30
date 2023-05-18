@@ -3,6 +3,7 @@
 	<head>
 		<title>VanWatch</title>
 
+		<!-- Favicon -->
 		<link rel="icon" type="image/x-icon" href="/images/logo.ico" />
 
 		<!-- Meta tags -->
@@ -66,6 +67,7 @@
 						<li>
 							<button class="dropdown-item" type="button" onclick="window.location.href = '/report'">report</button>
 						</li>
+						<!-- Display logout button if user is loggedin and display login button if user is not loggedin. -->
 						<% if (authenticated) { %>
 						<li>
 							<button class="dropdown-item" type="button" onclick="window.location.href = '/logout'">logout</button>

@@ -93,6 +93,12 @@ app.get('/detail', detailRouter);
 
 app.get('/about_contact', aboutContactRouter);
 
+app.get('*', (req, res) => {
+	var isAuthenticated = req.session.authenticated;
+	res.status(404);
+	res.render('404', {authenticated: isAuthenticated });
+});
+
 app.listen(port, () => {
 	console.log('Node application listening on port ' + port);
 });
