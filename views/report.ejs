@@ -38,7 +38,32 @@
                 <input type="text" name="street" id="street" class="form-control" placeholder="Street" required />
               </div>
               <div class="col-md-4">
-                <input type="text" name="city" id="city" class="form-control" placeholder="City" required />
+          <select name="neighborhood" id="neighborhood" class="form-control" placeholder="Neighborhood">
+            <option value="arbutusRidge">Arbutus Ridge</option>
+            <option value="centralBusinessDistrict">Central Business District</option>
+            <option value="dunbarSouthlands">Dunbar-Southlands</option>
+            <option value="fairview">Fairview</option>
+            <option value="grandviewWoodland">Grandview-Woodland</option>
+            <option value="hastingsSunrise">Hastings-Sunrise</option>
+            <option value="kensingtonCedarCottage">Kensington-Cedar Cottage</option>
+            <option value="kerrisdale">Kerrisdale</option>
+            <option value="killarney">Killarney</option>
+            <option value="kitsilano">Kitsilano</option>
+            <option value="marpole">Marpole</option>
+            <option value="mountPleasant">Mount Pleasant</option>
+            <option value="musqueam">Musqueam</option>
+            <option value="oakridge">Oakridge</option>
+            <option value="renfrewCollingwood">Renfrew-Collingwood</option>
+            <option value="rileyPark">Riley Park</option>
+            <option value="shaughnessy">Shaughnessy</option>
+            <option value="southCambie">South Cambie</option>
+            <option value="stanleyPark">Stanley Park</option>
+            <option value="strathcona">Strathcona</option>
+            <option value="sunset">Sunset</option>
+            <option value="victoriaFraserview">Victoria-Fraserview</option>
+            <option value="westEnd">West End</option>
+            <option value="westPointGrey">West Point Grey</option>
+          </select>
               </div>
               <div class="col-md-4">
                 <input type="text" name="postCode" id="postCode" class="form-control" placeholder="Post Code" required />
@@ -57,18 +82,5 @@
         <button type="submit" class="btn btn-primary">Report</button>
       </form>
       </div>
-      <%- include("templates/footer") %> 
 
-		<div class="mb-3">
-			<label for="description" class="form-label">Description:</label>
-			<textarea name="description" id="description" class="form-control" required></textarea>
-		</div>
-		<div class="mb-3">
-			<label for="picture" class="form-label">Picture:</label>
-			<input type="file" name="picture" id="picture" class="form-control" accept="image/*" />
-		</div>
-		<button type="submit" class="btn btn-primary">Report</button>
-	</form>
-</div>
-
-<%- include("templates/footer") %>
+<%- include("templates/footer")%>

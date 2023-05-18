@@ -16,7 +16,7 @@
     <h1 class="text-center">Report list</h1>
 
     <!-- Filter Form -->
-    <form id="filterForm" action="/filteredReports" method="POST">
+    <form id="filterForm" action="/filteredReports" method="GET">
       <div class="row">
         <div class="col">
           <label for="neighborhood">Neighborhood</label>
@@ -53,47 +53,47 @@
           <label for="crimeType">Crime Type</label>
           <div id="crimeType" class="form-check">
             
-            <input class="form-check-input" type="checkbox" value="breakAndEnterCommercial" id="breakAndEnterCommercial" name="crimeType">
+            <input class="form-check-input" type="checkbox" value="breakAndEnterCommercial" id="breakAndEnterCommercial" name="crimeType[]">
             <label class="form-check-label" for="breakAndEnterCommercial">
               Break and Enter Commercial
             </label>
             
-            <input class="form-check-input" type="checkbox" value="breakAndEnterResidential" id="breakAndEnterResidential" name="crimeType">
+            <input class="form-check-input" type="checkbox" value="breakAndEnterResidential" id="breakAndEnterResidential" name="crimeType[]">
             <label class="form-check-label" for="breakAndEnterResidential">
               Break and Enter Residential/Other
             </label>
         
-            <input class="form-check-input" type="checkbox" value="homicide" id="homicide" name="crimeType">
+            <input class="form-check-input" type="checkbox" value="homicide" id="homicide" name="crimeType[]">
             <label class="form-check-label" for="homicide">
               Homicide
             </label>
         
-            <input class="form-check-input" type="checkbox" value="mischief" id="mischief" name="crimeType">
+            <input class="form-check-input" type="checkbox" value="mischief" id="mischief" name="crimeType[]">
             <label class="form-check-label" for="mischief">
               Mischief
             </label>
         
-            <input class="form-check-input" type="checkbox" value="offenseAgainstPerson" id="offenseAgainstPerson" name="crimeType">
+            <input class="form-check-input" type="checkbox" value="offenseAgainstPerson" id="offenseAgainstPerson" name="crimeType[]">
             <label class="form-check-label" for="offenseAgainstPerson">
               Offense Against a Person
             </label>
         
-            <input class="form-check-input" type="checkbox" value="otherTheft" id="otherTheft" name="crimeType">
+            <input class="form-check-input" type="checkbox" value="otherTheft" id="otherTheft" name="crimeType[]">
             <label class="form-check-label" for="otherTheft">
               Other Theft
             </label>
         
-            <input class="form-check-input" type="checkbox" value="theftFromVehicle" id="theftFromVehicle" name="crimeType">
+            <input class="form-check-input" type="checkbox" value="theftFromVehicle" id="theftFromVehicle" name="crimeType[]">
             <label class="form-check-label" for="theftFromVehicle">
               Theft from Vehicle
             </label>
         
-            <input class="form-check-input" type="checkbox" value="theftOfBicycle" id="theftOfBicycle" name="crimeType">
+            <input class="form-check-input" type="checkbox" value="theftOfBicycle" id="theftOfBicycle" name="crimeType[]">
             <label class="form-check-label" for="theftOfBicycle">
               Theft of Bicycle
             </label>
         
-            <input class="form-check-input" type="checkbox" value="theftOfVehicle" id="theftOfVehicle" name="crimeType">
+            <input class="form-check-input" type="checkbox" value="theftOfVehicle" id="theftOfVehicle" name="crimeType[]">
             <label class="form-check-label" for="theftOfVehicle">
               Theft of Vehicle
             </label>
@@ -114,27 +114,21 @@
             <option value="all">All</option>
           </select>
         </div>
-        <div class="col">
+        <!-- <div class="col">
           <label for="reportSource">Report Source</label>
           <select name="reportSource" id="reportSource" class="form-control">
             <option value="all">All</option>
             <option value="user">User Report</option>
             <option value="vpd">VPD History Report</option>
           </select>
-        </div>
-      </li>
-			<li class="list-group-item" onclick="window.location.href = '/detail'">
-        <div class="row mt-3 mb-3">
-          <div class="col-4">
-            <img class="postImg" class="img-fluid align-self-center" src="/images/heart-fill.svg" alt="sampleimg2" />
+        </div> -->
+        <div class="row mt-3">
+          <div class="col text-center">
+            <button type="submit" class="btn btn-primary">Filter Reports</button>
           </div>
-          <div class="col-8">
-            <h2>sample list 2 title</h2>
-				    <p>sample content 2 description</p>
         </div>
-      </div>
-    </form>
-    <hr/>
+      </form>
+      <hr />
 
     <div class="container">
       <ul class="list-group list-group-flush">
@@ -146,7 +140,8 @@
               </div>
               <div class="col-8">
                 <h2><%= crime.type %></h2>
-                <p><%= crime.date %> at <%= crime.neighborhood %></p>
+                <%= crime.MONTH %>/<%= crime.DAY %>/<%= crime.YEAR %> - <%= (crime.HOUR % 12 === 0) ? 12 : crime.HOUR % 12 %>:<%= crime.MINUTES %> <%= (crime.HOUR >= 12) ? 'PM' : 'AM' %>
+                <p><%= crime.location %></p>
                 <p><%= crime.description %></p>
               </div>
             </div>
