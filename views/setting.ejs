@@ -3,6 +3,7 @@
 <head>
 	<!-- Load styles here -->
 	<link rel="stylesheet" href="/styles/setting.css" />
+	<link rel="stylesheet" href="/styles/slider.css" />
 </head>
 <body>
 	<!-- Body Contents -->
@@ -25,8 +26,22 @@
 
 					<div class="collapse" id="collapseAlert">
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item">On/Off</li>
-							<li class="list-group-item">Alert sound</li>
+							<li class="list-group-item">
+								<label class="slider">
+								  <input id="alertToggle" type="checkbox">
+								  <span class="slider"></span>
+								  <strong class="slider-text">On</strong>
+								</label>
+							  </li>
+							  
+							  <li class="list-group-item">
+								<label class="slider">
+								  <input id="alertSoundToggle" type="checkbox">
+								  <span class="slider"></span>
+								  <strong class="slider-text">Sound</strong>
+								</label>
+							  </li>
+							  
 							<li class="list-group-item">Alert distance</li>
 						</ul>
 					</div>
@@ -102,6 +117,59 @@
 	-->
 
 	<!-- Load scripts here -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+		  // Add click event listener to the on/off button
+		  $("#alertToggle").click(function() {
+			// Toggle the active state of the slider
+			$(this).parent().toggleClass("active");
+	  
+			// Change the value of the checkbox based on its state
+			$(this).attr("value", $(this).prop("checked") ? "on" : "off");
+	  
+			// Check if the slider is active
+			if ($(this).prop("checked")) {
+			  $(this).parent().find(".slider").addClass("active");
+			} else {
+			  $(this).parent().find(".slider").removeClass("active");
+			}
+		  });
+	  
+		  // Initialize the slider based on the initial checkbox state
+		  var initialChecked = $("#alertToggle").prop("checked");
+		  if (initialChecked) {
+			$("#alertToggle").parent().find(".slider").addClass("active");
+		  }
+	  
+		  // Add click event listener to the sound button
+		  $("#alertSoundToggle").click(function() {
+			// Toggle the active state of the slider
+			$(this).parent().toggleClass("active");
+	  
+			// Change the value of the checkbox based on its state
+			$(this).attr("value", $(this).prop("checked") ? "on" : "off");
+	  
+			// Check if the slider is active
+			if ($(this).prop("checked")) {
+			  $(this).parent().find(".slider").addClass("active");
+			} else {
+			  $(this).parent().find(".slider").removeClass("active");
+			}
+		  });
+	  
+		  // Initialize the sound slider based on the initial checkbox state
+		  var initialSoundChecked = $("#alertSoundToggle").prop("checked");
+		  if (initialSoundChecked) {
+			$("#alertSoundToggle").parent().find(".slider").addClass("active");
+		  }
+		});
+	  </script>
+	  
+	  
+ 
+
+
 </body>
 
 <%- include("templates/footer") %>
