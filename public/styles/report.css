@@ -1,18 +1,24 @@
+.container {
+  background-color: #EDF7F6;
+}
+
+.report_form {
+  background-color: #F9FFFE;
+}
+
 .form-label {
-    font-weight: bold;
-  }
-  
-  .form-control {
-    border-radius: 0;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
-  }
-  
+  font-weight: bold;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.submit_button {
+  background-color: #679436;
+  color: #EDF7F6;
+}
+
+.submit_button:hover {
+  background-color: #73956F;
+}

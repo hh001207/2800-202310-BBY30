@@ -26,7 +26,7 @@
 
 		<!-- Load libraries here -->
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+		
 		<!-- Load styles here -->
 		<link rel="stylesheet" href="/styles/skeleton.css" />
 	</head>
@@ -65,7 +65,7 @@
 							<button class="dropdown-item" type="button" onclick="window.location.href = '/profile'">profile</button>
 						</li>
 						<li>
-							<button class="dropdown-item" type="button" onclick="window.location.href = '/report'">report</button>
+							<button class="dropdown-item" type="button" id="reportButton">report</button>
 						</li>
 						<!-- Display logout button if user is loggedin and display login button if user is not loggedin. -->
 						<% if (authenticated) { %>
@@ -81,5 +81,6 @@
 				</div>
 			</div>
 		</nav>
+		<script src="/scripts/easteregg.js"></script>
 	</body>
 </html>
