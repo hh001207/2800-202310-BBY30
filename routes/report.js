@@ -46,8 +46,6 @@ router.get('/report', (req, res) => {
   }
 });
 
-  
-
 router.post('/reporting', upload.single('picture'), async (req, res) => {
 	console.log('Handling share request1...');
 	console.log('Request body:', req.body);
