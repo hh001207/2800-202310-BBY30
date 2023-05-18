@@ -10,11 +10,6 @@ const mongodb_database = process.env.MONGODB_DATABASE;
 
 var { database } = include('databaseConnection');
 
-const userCollection = database.db(mongodb_database).collection('users');
-const shareCollection = (req) => {
-	console.log('req.session.username:', req.session.username);
-	return database.db(mongodb_database).collection(req.session.username);
-  };
 
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -61,17 +56,23 @@ router.post('/reporting', upload.single('picture'), async (req, res) => {
 	  return;
 	}
 	
-	const { title, description, street, city, postCode } = req.body;
+	const { type, YEAR, MONTH, DAY, HOUR, MINUTES, description, street, city, postCode } = req.body;
 	const location = `${street}, ${city}, ${postCode}`;
 	console.log('Location:', street, city, postCode);
 
 const share = {
 	_id: null,
-    title: title || '',
-    description: description || '',
+  userId: req.session.username,
+  type: type || '',
+  YEAR: new Date().getFullYear(),
+	MONTH: new Date().getMonth() + 1,
+	DAY: new Date().getDate(),
+  HOUR: new Date().getHours(),
+  MINUTES: new Date().getMinutes(),
+  description: description || '',
 	location: location || '',
   picture: req.file ? req.file.filename : '',
-	userId: req.session.username,
+	
   };
 
   try {
