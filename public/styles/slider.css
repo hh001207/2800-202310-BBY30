@@ -1,4 +1,14 @@
 /* slider.css */
+.label-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+.label-text {
+  margin-right: 10px; 
+}
+
 .slider {
   position: relative;
   width: 60px;
