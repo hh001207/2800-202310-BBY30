@@ -140,28 +140,9 @@
     <div class="container">
       <h1 class="text-center">Report list</h1>
       <ul class="list-group list-group-flush">
-        <!-- <% report_list.forEach(function(crime){ %>
-          <li class="list-group-item" onclick="window.location.href = '/detail/<%= crime._id %>'">
-            <div class="row mt-3 mb-3">
-              <div class="col-4">
-                <img class="postImg" class="img-fluid align-self-center" src="/images/<%= crime.image %>" alt="<%= crime.type %>" />
-              </div>
-              <div class="col-8">
-                <h2><%= crime.type %></h2>
-                <%= crime.MONTH %>/<%= crime.DAY %>/<%= crime.YEAR %> - <%= (crime.HOUR % 12 === 0) ? 12 : crime.HOUR % 12 %>:<%= crime.MINUTES %> <%= (crime.HOUR >= 12) ? 'PM' : 'AM' %>
-                <p><%= crime.location %></p>
-                <p><%= crime.description %></p>
-              </div>
-            </div>
-          </li>
-        <% }) %>         -->
         <% report_list.forEach(function(crime){ %>
           <li class="list-group-item">
             <div class="row mt-3 mb-3">
-              <div class="col-4">
-                <img class="postImg" class="img-fluid align-self-center" src="/images/<%= crime.image %>"
-                  alt="<%= crime.type %>" />
-              </div>
               <div class="col-8">
                 <h2>
                   <%= crime.type %>
