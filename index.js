@@ -1,4 +1,5 @@
 require('./utils.js');
+const path = require('path');
 
 require('dotenv').config();
 const express = require('express');
@@ -48,6 +49,7 @@ app.use(
 );
 
 app.use(express.static('./public'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const homeRouter = require('./routes/home.js');
 const mainMapRouter = require('./routes/main_map.js');
@@ -60,6 +62,9 @@ const reportRouter = require('./routes/report.js');
 const settingRouter = require('./routes/setting.js');
 const signupRouter = require('./routes/signup.js');
 const reportSucceedRouterRouter = require('./routes/report_succeed.js');
+const editreportRouter = require('./routes/edit_report.js');
+const updatereportRouter = require('./routes/update_report.js');
+const secretReportRouter = require('./routes/secret_report.js');
 
 app.get('/', homeRouter);
 
@@ -79,6 +84,10 @@ app.get('/login', loginRouter);
 
 app.post('/loggingin', loginRouter);
 
+app.post('/reporting', reportRouter);
+
+app.post('/update_report', updatereportRouter);
+
 app.get('/loggedin', loginRouter);
 
 app.get('/logout', loginRouter);
@@ -87,11 +96,23 @@ app.get('/report', reportRouter);
 
 app.get('/report_succeed', reportSucceedRouterRouter);
 
+app.get('/edit_report', editreportRouter);
+
 app.get('/profile', profileRouter);
 
-app.get('/detail', detailRouter);
+app.use('/detail', detailRouter);
 
 app.get('/about_contact', aboutContactRouter);
+
+app.get('/secret_report', secretReportRouter);
+
+app.use('/', profileRouter);
+
+app.get('*', (req, res) => {
+	var isAuthenticated = req.session.authenticated;
+	res.status(404);
+	res.render('404', {authenticated: isAuthenticated });
+});
 
 app.listen(port, () => {
 	console.log('Node application listening on port ' + port);

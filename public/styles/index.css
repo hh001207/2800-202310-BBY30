@@ -1,11 +1,3 @@
-nav {
-  margin-bottom: 50px;
-}
-
-footer {
-  margin-top: 50px;
-}
-
 .carousel-item img {
   border-radius: 15%;
   object-fit: cover;
@@ -19,8 +11,15 @@ footer {
 
 .index_button {
   margin-bottom: 25px;
+  background-color: #679436;
+  color: #EDF7F6;
+}
+
+.index_button:hover {
+  background-color: #73956F;
 }
 
 .card {
   border: none;
+  background-color: #EDF7F6;
 }

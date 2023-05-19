@@ -277,22 +277,26 @@ app.post('/report', async (req, res) => {
 	  return;
 	}
 	
-	const { title, description, street, city, postCode } = req.body;
+	const { title, year, month, day, description, street, city, postCode } = req.body;
 	const location = `${street}, ${city}, ${postCode}`;
 	console.log('Location:', street, city, postCode);
 
   const share = {
 	_id: null,
+	userId: req.session.username,
     title: title || '',
+	//let system to get the current date
+	year: new Date().getFullYear(),
+	month: new Date().getMonth() + 1,
+	day: new Date().getDate(),
     description: description || '',
 	location: location || '',
-	userId: req.session.username,
   };
 
   try {
     const shareCollection = database.db(mongodb_database).collection('shares');
     const result = await shareCollection.insertOne(share);
-
+	console.log('Share created successfully:', result);
     res.render('reportsucceed');
   } catch (error) {
     console.error('Error adding share:', error);

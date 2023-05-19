@@ -9,64 +9,79 @@
 
     <!-- Load styles here -->
     <link rel="stylesheet" href="/styles/skeleton.css" />
-    <link rel="stylesheet" href="/styles/skeleton.css" />
+   
+    <style>
+      .readonly-input {
+        background-color: #f3f3f3;
+        pointer-events: none;
+      }
+    </style>
+    
 </head>
-
 <body>
     <!-- Body Contents -->
     <div class="container">
-        <form>
-            <fieldset class="mb-3" id="personalInfoFields" disabled>
+      <form id="profile-form" action="/save" method="POST"> <!-- Make sure the form encapsulates the entire fields -->
+          <fieldset class="mb-3" id="personalInfoFields" disabled>
                 <div class="form-group">
                     <label>Username</label>
                     <input
                       type="text"
                       id="usernameInput"
-                      class="form-control"
+                      class="form-control readonly-input"
                       value="<%= username %>"
-                      placeholder="Username"/>
+                      placeholder="Username"
+                      name="username"
+                      readonly/>
                 </div>
                 <div class="form-group">
                   <label>First name</label>
                   <input
                     type="text"
-                    id="nameInput"
+                    id="firstnameInput"
                     class="form-control"
                     value="<%= firstname %>"
-                    placeholder="Enter your first name"/>
+                    placeholder="Enter your first name"
+                    name="firstname"/>
                 </div>
                 <div class="form-group">
                     <label>Last name</label>
                     <input
                       type="text"
-                      id="nameInput"
+                      id="lastnameInput"
                       class="form-control"
                       value="<%= lastname %>"
-                      placeholder="Enter your last name"/>
+                      placeholder="Enter your last name"
+                      name="lastname"/>
                   </div>
                 <div class="form-group">
                   <label>Gender</label>
-                  <input 
-                  type="gender" 
-                  id="genderInput" 
-                  class="form-control" 
-                  placeholder="Check your gender"/>
+                  <select id="genderInput" class="form-control" name="gender" value="<%= gender %>">
+                    <option selected>Choose...</option>
+                    <option value="Male" <%= gender === 'Male' ? 'selected' : '' %>>Male</option>
+                    <option value="Female" <%= gender === 'Female' ? 'selected' : '' %>>Female</option>
+                    <option value="Other" <%= gender === 'Other' ? 'selected' : '' %>>Other</option>
+                </select>
                 </div>
                 <div class="form-group">
                     <label>Age</label>
                     <input 
-                    type="age" 
+                    type="number" 
                     id="ageInput" 
-                    class="form-control" 
-                    placeholder="Enter your age"/>
+                    class="form-control"
+                    value="<%= age %>"
+                    placeholder="Enter your age"
+                    name="age"/>
                   </div>
                   <div class="form-group">
                     <label>Job</label>
                     <input 
-                    type="job" 
-                    id="jobInput" 
-                    class="form-control" 
-                    placeholder="Enter your job"/>
+                      type="text" 
+                      id="jobInput" 
+                      class="form-control" 
+                      value="<%= job %>"
+                      placeholder="Enter your job"
+                      name="job"/>
                   </div>
                   <div class="form-group">
                     <label>Email</label>
@@ -75,24 +90,26 @@
                     id="emailInput" 
                     class="form-control" 
                     value="<%= email %>"
-                    placeholder="Enter your email"/>
+                    placeholder="Enter your email"
+                    name="email"/>
                   </div>
                   <div class="form-group">
                     <label>Password</label>
                     <input 
-                    type="string" 
+                    type="password" 
                     id="password" 
                     class="form-control" 
                     value="<%= password %>"
-                    placeholder="Password"/>
+                    placeholder="Password"
+                    name="password"/>
                   </div>
               </fieldset>
-            <div class="d-flex justify-content-end mt-5">
-                <button type="button" class="btn btn-secondary" onclick="editUserInfo()">
+              <div class="d-flex justify-content-end mt-5">
+                <button type="button" class="btn btn-secondary btn-edit">
                     Edit
                 </button>
                 <span style="width: 10px"></span>
-                <button type="button" class="btn btn-info" onclick="saveUserInfo()">
+                <button type="submit" class="btn btn-info btn-save">
                     Save
                 </button>
                 <span style="width: 10px"></span>
@@ -100,10 +117,14 @@
             </div>
         </form>
     </div>
-    
+
     <!-- Load scripts here -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script src="/scripts/skeleton.js"></script> -->
+    <script src="/scripts/profile.js"></script>
+
 </body>
 
 <%- include("templates/footer") %>
+
+
+
