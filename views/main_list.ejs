@@ -1,120 +1,127 @@
 <%- include("templates/header") %>
 
-<head>
-  <!-- Load styles here -->
-  <link rel="stylesheet" href="/styles/main_list.css" />
-</head>
-<style>
-#crimeType {
-    height: 50px; /* adjust as needed */
-    overflow: auto;
-}
-</style>
-<body>
-  <!-- Body Contents -->
-  <div class="container">
-    <h1 class="text-center">Report list</h1>
+  <head>
+    <!-- Load styles here -->
+    <link rel="stylesheet" href="/styles/main_list.css" />
+  </head>
+  <style>
+    #crimeType {
+      height: 80px;
+      /* adjust as needed */
+      overflow: auto;
+    }
+  </style>
 
-    <!-- Filter Form -->
-    <form id="filterForm" action="/filteredReports" method="GET">
-      <div class="row">
-        <div class="col">
-          <label for="neighborhood">Neighborhood</label>
-          <select name="neighborhood" id="neighborhood" class="form-control">
-            <option value="all">All</option>
-            <option value="arbutusRidge">Arbutus Ridge</option>
-            <option value="centralBusinessDistrict">Central Business District</option>
-            <option value="dunbarSouthlands">Dunbar-Southlands</option>
-            <option value="fairview">Fairview</option>
-            <option value="grandviewWoodland">Grandview-Woodland</option>
-            <option value="hastingsSunrise">Hastings-Sunrise</option>
-            <option value="kensingtonCedarCottage">Kensington-Cedar Cottage</option>
-            <option value="kerrisdale">Kerrisdale</option>
-            <option value="killarney">Killarney</option>
-            <option value="kitsilano">Kitsilano</option>
-            <option value="marpole">Marpole</option>
-            <option value="mountPleasant">Mount Pleasant</option>
-            <option value="musqueam">Musqueam</option>
-            <option value="oakridge">Oakridge</option>
-            <option value="renfrewCollingwood">Renfrew-Collingwood</option>
-            <option value="rileyPark">Riley Park</option>
-            <option value="shaughnessy">Shaughnessy</option>
-            <option value="southCambie">South Cambie</option>
-            <option value="stanleyPark">Stanley Park</option>
-            <option value="strathcona">Strathcona</option>
-            <option value="sunset">Sunset</option>
-            <option value="victoriaFraserview">Victoria-Fraserview</option>
-            <option value="westEnd">West End</option>
-            <option value="westPointGrey">West Point Grey</option>
-          </select>
-        </div>
-
-        <div class="col">
-          <label for="crimeType">Crime Type</label>
-          <div id="crimeType" class="form-check">
-            
-            <input class="form-check-input" type="checkbox" value="breakAndEnterCommercial" id="breakAndEnterCommercial" name="crimeType[]">
-            <label class="form-check-label" for="breakAndEnterCommercial">
-              Break and Enter Commercial
-            </label>
-            
-            <input class="form-check-input" type="checkbox" value="breakAndEnterResidential" id="breakAndEnterResidential" name="crimeType[]">
-            <label class="form-check-label" for="breakAndEnterResidential">
-              Break and Enter Residential/Other
-            </label>
-        
-            <input class="form-check-input" type="checkbox" value="homicide" id="homicide" name="crimeType[]">
-            <label class="form-check-label" for="homicide">
-              Homicide
-            </label>
-        
-            <input class="form-check-input" type="checkbox" value="mischief" id="mischief" name="crimeType[]">
-            <label class="form-check-label" for="mischief">
-              Mischief
-            </label>
-        
-            <input class="form-check-input" type="checkbox" value="offenseAgainstPerson" id="offenseAgainstPerson" name="crimeType[]">
-            <label class="form-check-label" for="offenseAgainstPerson">
-              Offense Against a Person
-            </label>
-        
-            <input class="form-check-input" type="checkbox" value="otherTheft" id="otherTheft" name="crimeType[]">
-            <label class="form-check-label" for="otherTheft">
-              Other Theft
-            </label>
-        
-            <input class="form-check-input" type="checkbox" value="theftFromVehicle" id="theftFromVehicle" name="crimeType[]">
-            <label class="form-check-label" for="theftFromVehicle">
-              Theft from Vehicle
-            </label>
-        
-            <input class="form-check-input" type="checkbox" value="theftOfBicycle" id="theftOfBicycle" name="crimeType[]">
-            <label class="form-check-label" for="theftOfBicycle">
-              Theft of Bicycle
-            </label>
-        
-            <input class="form-check-input" type="checkbox" value="theftOfVehicle" id="theftOfVehicle" name="crimeType[]">
-            <label class="form-check-label" for="theftOfVehicle">
-              Theft of Vehicle
-            </label>
+  <body>
+    <!-- Body Contents -->
+    <div class="container">
+      <h1 class="text-left">Filter</h1>
+      <!-- Filter Form -->
+      <form id="filterForm" action="/filteredReports" method="GET">
+        <div class="row">
+          <div class="col">
+            <label for="neighborhood">Neighborhood</label>
+            <select name="neighborhood" id="neighborhood" class="form-control">
+              <option value="all">All</option>
+              <option value="arbutusRidge">Arbutus Ridge</option>
+              <option value="centralBusinessDistrict">Central Business District</option>
+              <option value="dunbarSouthlands">Dunbar-Southlands</option>
+              <option value="fairview">Fairview</option>
+              <option value="grandviewWoodland">Grandview-Woodland</option>
+              <option value="hastingsSunrise">Hastings-Sunrise</option>
+              <option value="kensingtonCedarCottage">Kensington-Cedar Cottage</option>
+              <option value="kerrisdale">Kerrisdale</option>
+              <option value="killarney">Killarney</option>
+              <option value="kitsilano">Kitsilano</option>
+              <option value="marpole">Marpole</option>
+              <option value="mountPleasant">Mount Pleasant</option>
+              <option value="musqueam">Musqueam</option>
+              <option value="oakridge">Oakridge</option>
+              <option value="renfrewCollingwood">Renfrew-Collingwood</option>
+              <option value="rileyPark">Riley Park</option>
+              <option value="shaughnessy">Shaughnessy</option>
+              <option value="southCambie">South Cambie</option>
+              <option value="stanleyPark">Stanley Park</option>
+              <option value="strathcona">Strathcona</option>
+              <option value="sunset">Sunset</option>
+              <option value="victoriaFraserview">Victoria-Fraserview</option>
+              <option value="westEnd">West End</option>
+              <option value="westPointGrey">West Point Grey</option>
+            </select>
           </div>
-        </div>
 
-        <div class="col">
-          <label for="dateRange">Date Range</label>
-          <select name="dateRange" id="dateRange" class="form-control">
-            <option value="1day">1 Day</option>
-            <option value="1week">1 Week</option>
-            <option value="1month">1 Month</option>
-            <option value="3months">3 Months</option>
-            <option value="6months">6 Months</option>
-            <option value="1year">1 Year</option>
-            <option value="1year">3 Year</option>
-            <option value="1year">5 Year</option>
-            <option value="all">All</option>
-          </select>
-        </div>
-        <!-- <div class="col">
+          <div class="col">
+            <label for="crimeType">Crime Type</label>
+            <div id="crimeType" class="form-check">
+
+              <input class="form-check-input" type="checkbox" value="breakAndEnterCommercial"
+                id="breakAndEnterCommercial" name="crimeType[]">
+              <label class="form-check-label" for="breakAndEnterCommercial">
+                Break and Enter Commercial
+              </label>
+
+              <input class="form-check-input" type="checkbox" value="breakAndEnterResidential"
+                id="breakAndEnterResidential" name="crimeType[]">
+              <label class="form-check-label" for="breakAndEnterResidential">
+                Break and Enter Residential/Other
+              </label>
+
+              <input class="form-check-input" type="checkbox" value="homicide" id="homicide" name="crimeType[]">
+              <label class="form-check-label" for="homicide">
+                Homicide
+              </label>
+
+              <input class="form-check-input" type="checkbox" value="mischief" id="mischief" name="crimeType[]">
+              <label class="form-check-label" for="mischief">
+                Mischief
+              </label>
+
+              <input class="form-check-input" type="checkbox" value="offenseAgainstPerson" id="offenseAgainstPerson"
+                name="crimeType[]">
+              <label class="form-check-label" for="offenseAgainstPerson">
+                Offense Against a Person
+              </label>
+
+              <input class="form-check-input" type="checkbox" value="otherTheft" id="otherTheft" name="crimeType[]">
+              <label class="form-check-label" for="otherTheft">
+                Other Theft
+              </label>
+
+              <input class="form-check-input" type="checkbox" value="theftFromVehicle" id="theftFromVehicle"
+                name="crimeType[]">
+              <label class="form-check-label" for="theftFromVehicle">
+                Theft from Vehicle
+              </label>
+
+              <input class="form-check-input" type="checkbox" value="theftOfBicycle" id="theftOfBicycle"
+                name="crimeType[]">
+              <label class="form-check-label" for="theftOfBicycle">
+                Theft of Bicycle
+              </label>
+
+              <input class="form-check-input" type="checkbox" value="theftOfVehicle" id="theftOfVehicle"
+                name="crimeType[]">
+              <label class="form-check-label" for="theftOfVehicle">
+                Theft of Vehicle
+              </label>
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="dateRange">Date Range</label>
+            <select name="dateRange" id="dateRange" class="form-control">
+              <option value="1day">1 Day</option>
+              <option value="1week">1 Week</option>
+              <option value="1month">1 Month</option>
+              <option value="3months">3 Months</option>
+              <option value="6months">6 Months</option>
+              <option value="1year">1 Year</option>
+              <option value="1year">3 Year</option>
+              <option value="1year">5 Year</option>
+              <option value="all">All</option>
+            </select>
+          </div>
+          <!-- <div class="col">
           <label for="reportSource">Report Source</label>
           <select name="reportSource" id="reportSource" class="form-control">
             <option value="all">All</option>
@@ -122,17 +129,18 @@
             <option value="vpd">VPD History Report</option>
           </select>
         </div> -->
-        <div class="row mt-3">
-          <div class="col text-center">
-            <button type="submit" class="btn btn-primary">Filter Reports</button>
+          <div class="row mt-3">
+            <div class="col text-center">
+              <button type="submit" class="btn btn-primary">Filter Reports</button>
+            </div>
           </div>
-        </div>
       </form>
       <hr />
-
+    </div>
     <div class="container">
+      <h1 class="text-center">Report list</h1>
       <ul class="list-group list-group-flush">
-        <% report_list.forEach(function(crime){ %>
+        <!-- <% report_list.forEach(function(crime){ %>
           <li class="list-group-item" onclick="window.location.href = '/detail/<%= crime._id %>'">
             <div class="row mt-3 mb-3">
               <div class="col-4">
@@ -146,13 +154,37 @@
               </div>
             </div>
           </li>
-        <% }) %>        
+        <% }) %>         -->
+        <% report_list.forEach(function(crime){ %>
+          <li class="list-group-item">
+            <div class="row mt-3 mb-3">
+              <div class="col-4">
+                <img class="postImg" class="img-fluid align-self-center" src="/images/<%= crime.image %>"
+                  alt="<%= crime.type %>" />
+              </div>
+              <div class="col-8">
+                <h2>
+                  <%= crime.type %>
+                </h2>
+                <%= crime.MONTH %>/<%= crime.DAY %>/<%= crime.YEAR %> - <%= (crime.HOUR % 12===0) ? 12 : crime.HOUR % 12
+                        %>:<%= crime.MINUTES %>
+                          <%= (crime.HOUR>= 12) ? 'PM' : 'AM' %>
+                            <p>
+                              <%= crime.location %>
+                            </p>
+                            <p>
+                              <%= crime.description %>
+                            </p>
+                            <a href="/detail/<%= crime._id %>">See Details</a>
+              </div>
+            </div>
+          </li>
+          <% }) %>
       </ul>
     </div>
-    
 
-  <!-- Load scripts here -->
-</body>
 
-<%- include("templates/footer")%>
+    <!-- Load scripts here -->
+  </body>
 
+  <%- include("templates/footer")%>

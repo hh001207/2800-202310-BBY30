@@ -1,47 +1,70 @@
 <%- include("templates/header") %>
 
-<head>
-	<!-- Bootstrap CSS -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8 offset-md-2 crime-details">
-				<div class="crime-section">
-					<h1>Details</h1>
-				</div>
-				<div class="crime-section">
-					<h3>Crime Type</h3>
-				</div>
-				<div class="crime-section">
-					<h3>Occurrence Date/Time</h3>
-				</div>
-				<div class="crime-section">
-					<h3>Crime Description</h3>
-				</div>
-				<div class="crime-section">
-					<h3>Location</h3>
-				</div>
-				<div class="crime-section">
-					<h3>Neighborhood</h3>
-					<h3>Crime Photo</h3>
-					<!-- add < % = this to the below code when you comment it out -->
-					<!-- <img src=" crimePhoto %>" alt="Crime photo" class="crime-image" /> -->
-				</div>
-				<div class="crime-section">
-					<h3>Crime Description</h3>
-					<!-- add < % = this to the below code when you comment it out -->
-					<!-- <p> crimeDescription %></p> -->
-				</div>
-			</div>
+	<body>
+		<div class="container">
+			<ul class="list-group list-group-flush">
+				<% detail/:id.forEach(function(crime){ %>
+					<li class="list-group-item">
+						<div class="col-md-8">
+							<div class="card">
+								<div class="card-header">
+									<h1 class="text-center">Details</h1>
+								</div>
+								<div class="card-body">
+									<div class="card">
+										<div class="card-body">
+											<h3 class="card-title">Crime Type :</h3>
+											<p class="card-text">
+												<%= crime.type %>
+											</p>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-body">
+											<h3 class="card-title">Occurrence Date/Time :</h3>
+											<p class="card-text">
+												<%= crime.MONTH %>/<%= crime.DAY %>/<%= crime.YEAR %> - <%= (crime.HOUR
+																% 12===0) ? 12 : crime.HOUR % 12 %>:<%= crime.MINUTES %>
+																	<%= (crime.HOUR>= 12) ? 'PM' : 'AM' %>
+											</p>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-body">
+											<h3 class="card-title">Crime Description :</h3>
+											<p class="card-text">
+												<%= crime.description %>
+											</p>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-body">
+											<h3 class="card-title">Location: </h3>
+											<p class="card-text">
+												<%= crime.location %>
+											</p>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-body">
+											<h3 class="card-title">Crime Photo: </h3>
+											<img src="/images/<%= crime.image %>" alt="<%= crime.type %>"
+												class="img-fluid" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<% }) %>
 		</div>
-	</div>
-	<!-- Bootstrap and jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+		</div>
+		</div>
 
-<%- include("templates/footer") %>
+		<!-- Bootstrap and jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+
+	<%- include("templates/footer") %>
