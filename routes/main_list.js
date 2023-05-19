@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongodb = require('mongodb');
 const mongodb_database = process.env.MONGODB_DATABASE;
 const { database } = require('../databaseConnection');
 const reportsCollection = database.db(mongodb_database).collection('shares');
@@ -12,6 +13,22 @@ router.get('/main_list', async function (req, res, next) {
     next(error);
   }
 });
+
+router.get('/detail/:id', async function(req, res, next) {
+  try {
+    const id = req.params.id;
+    // Fetch the crime report from the database based on the provided ID
+    const crime = await reportsCollection.findOne({ _id: new mongodb.ObjectID(id) });
+    if (crime) {
+      res.render('detail', { crime });
+    } else {
+      res.status(404).send('Crime not found');
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 router.get('/filteredReports', async function (req, res, next) {
   try {
