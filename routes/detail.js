@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongodb_database = process.env.MONGODB_DATABASE;
 const { database } = require('../databaseConnection');
-const reportsCollection = database.db(process.env.MONGODB_DATABASE).collection('shares');
+const sharesCollection = database.db(process.env.MONGODB_DATABASE).collection('shares');
+console.log(sharesCollection)
 const { ObjectId } = require('mongodb');
 
 // router.get('/detail', async function (req, res, next) {
@@ -14,10 +15,12 @@ const { ObjectId } = require('mongodb');
 //   }
 // });
 
-router.get('detail/:id', async function (req, res, next) {
+router.get('/detail/:id', async function (req, res, next) {
   try {
     const { id } = req.params;
-    const crime = await reportsCollection.findOne({ _id: new ObjectId(id) });
+    console.log({id})
+    const crime = await sharesCollection.findOne({ _id: new ObjectId(id) });
+    console.
     res.render('detail', { crime, authenticated: req.session.authenticated });
   } catch (error) {
     next(error);
