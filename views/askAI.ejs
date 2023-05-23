@@ -1,0 +1,45 @@
+<%- include("templates/header") %>
+
+<head>
+	<!-- Load styles here -->
+	<link rel="stylesheet" href="/styles/ask.css" />
+</head>
+<body>
+	<div class="col-md-10 mx-auto col-lg-5 container">
+		<form id="ask-form" class="p-4 p-md-5 border rounded-3" action="/asking" method="post">
+			<header class="d-flex justify-content-center py-3">
+				<h1 class="mb-1">Ask your questions about how to handle emergencies here!</h1>
+			</header>
+			<hr />
+			<br />
+			<div class="form-floating mb-3">
+				<input type="text" id="question-input" class="form-control" placeholder="Type your question here..." required />
+			</div>
+			<br />
+			<div class="container d-flex justify-content-center">
+				<button type="submit" class="submit_button btn">Ask</button>
+			</div>
+			<p id="answer-display"></p>
+		</form>
+	</div>
+	<div id="disclaimerModal" class="modal">
+		<div class="modal-content">
+			<h2>Legal Disclaimer</h2>
+			<p>
+				It is always advisable to seek the counsel of a legal expert when dealing with legal issues. I am not a legal
+				professional and do not provide legal advice. Consult with a legal expert to obtain accurate and reliable
+				information.
+			</p>
+			<p>
+				The information I provide is general advice, and it can vary depending on the legal situation. It is always
+				recommended to listen to the opinion of a legal expert.
+			</p>
+			<button id="acceptBtn" class="submit_button btn">OK</button>
+		</div>
+	</div>
+	<!-- Load scripts here -->
+	<script src="scripts/connectAI.js"></script>
+	<script src="scripts/beforeConnectAI.js"></script>
+</body>
+
+<%- include("templates/footer") %>
