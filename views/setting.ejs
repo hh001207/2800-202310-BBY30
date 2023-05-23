@@ -100,49 +100,44 @@
 
 					<div class="collapse" id="collapseAccount">
 						<ul class="list-group list-group-flush">
-							<li
-								class="list-group-item"
+							<li class="list-group-item"
 								data-bs-toggle="collapse"
 								data-bs-target="#collapseChangePassword"
 								aria-expanded="false"
-								aria-controls="collapseThird"
-							>
+								aria-controls="collapseThird">
 								Change password
 							</li>
-
-							<div class="collapse" id="collapseChangePassword">
+					
+					        <div class="collapse" id="collapseChangePassword">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item">
 										<form action="/change_password" method="post">
-											<input name="new_password" type="password" placeholder="new password" required />
-											<button type="submit">Submit</button>
+											<div class="input-group">
+												<input name="old_password" type="password" placeholder="Old password" required />
+											</div>
+											<div class="input-group">
+												<input name="new_password" type="password" placeholder="New password" required />
+											</div>
+											<div class="input-group">
+												<input name="confirm_password" type="password" placeholder="Confirm new password" required />
+											</div>
+											<div class="input-group">
+												<button type="submit">Submit</button>
+											</div>
 										</form>
 									</li>
 								</ul>
 							</div>
 						</ul>
 					</div>
+					
 				</ul>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
 	</div>
 
-	<!--
-		toggle switch turned off
-		<div class="form-check form-switch">
-			<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-			<label class="form-check-label" for="flexSwitchCheckDefault">Toggle switch</label>
-		</div>
 
-		toggle switch turned on
-		<div class="form-check form-switch">
-			<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
-			<label class="form-check-label" for="flexSwitchCheckDefault">Toggle switch</label>
-		</div>
-	-->
-
-	<!-- Load scripts here -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -235,6 +230,33 @@
 	  </script>
 	  
 	  
+<style>
+	.input-group {
+		margin-bottom: 10px;
+	}
+
+	.input-group input {
+		width: 100%;
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 16px;
+	}
+
+	.input-group button {
+		padding: 10px 20px;
+		background-color: #4CAF50;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 16px;
+	}
+
+	.input-group button:hover {
+		background-color: #45a049;
+	}
+</style>
  
 
 
