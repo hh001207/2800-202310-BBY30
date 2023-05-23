@@ -119,6 +119,7 @@ app.get('*', (req, res) => {
 	res.render('404', {authenticated: isAuthenticated });
 });
 
+
 app.listen(port, () => {
 	console.log('Node application listening on port ' + port);
 });
