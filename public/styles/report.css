@@ -22,3 +22,7 @@
 .submit_button:hover {
   background-color: #73956F;
 }
+
+.report_body {
+  margin-bottom: 100px;
+}

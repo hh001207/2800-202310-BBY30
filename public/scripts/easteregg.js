@@ -34,3 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		clearTimeout(pressTimer);
 	});
 });
+
+function goToPage(url) {
+	window.location.href = url;
+}
