@@ -126,6 +126,56 @@ app.get('*', (req, res) => {
 	res.render('404', {authenticated: isAuthenticated });
 });
 
+async function sendWebPushNotification(subscription, message) {
+	try {
+	  const response = await fetch('/webpush', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+		  subscription,
+		  message,
+		}),
+	  });
+  
+	  if (!response.ok) {
+		throw new Error('Failed to send push notification');
+	  }
+  
+	  console.log('Push notification sent successfully');
+	} catch (error) {
+	  console.error('Error sending push notification:', error);
+	}
+  }
+
+  app.post('/webpush', async (req, res) => {
+	const { subscription, message } = req.body;
+  
+	try {
+	  const webPush = require('web-push');
+	  const vapidKeys = {
+		publicKey: process.env.VAPID_PUBLIC_KEY,
+		privateKey: process.env.VAPID_PRIVATE_KEY,
+	  };
+  
+	  webPush.setVapidDetails(
+		'mailto:example@example.com',
+		vapidKeys.publicKey,
+		vapidKeys.privateKey
+	  );
+  
+	  const payload = JSON.stringify(message);
+  
+	  await webPush.sendNotification(subscription, payload);
+  
+	  res.sendStatus(200);
+	} catch (error) {
+	  console.error('Error sending push notification:', error);
+	  res.sendStatus(500);
+	}
+  });
+  
 
 app.listen(port, () => {
 	console.log('Node application listening on port ' + port);
