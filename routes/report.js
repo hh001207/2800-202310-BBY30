@@ -4,15 +4,46 @@ const Joi = require('joi');
 const router = express.Router();
 const multer = require('multer');
 const firebaseAdmin = require('firebase-admin');
+const webpush = require('web-push');
+const Subscription = require('./webpush');
 
 
 var admin = require("firebase-admin");
 
 var serviceAccount = require('./serviceAccountKey.json');
 
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    // Specify the destination folder where uploaded files should be stored
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    // Specify how the file should be named
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
+
+router.use(express.json());
+
+router.use(express.urlencoded({ extended: false }));
+
+// Set up your VAPID keys and email address
+const vapidPublicKey = 'BPUGx8ahki6vYwmxolUhrAAukf8pmMdUnQSW-rble5J-QUAuuuWw7lTCQMldt3PV4Mi6pbcicuR2lfuIWzRpMXU';
+const vapidPrivateKey = 'FCQ7MBeS_drZa8XjLsBhowfP9JCAw-OOak3XtiyQBtU';
+
+
+// Set up the VAPID details
+webpush.setVapidDetails(
+  'mailto:  nfeng2@my.bcit.ca',
+  vapidPublicKey,
+  vapidPrivateKey
+);
 
 const expireTime = 1 * 60 * 60 * 1000;
 
@@ -20,22 +51,15 @@ const mongodb_database = process.env.MONGODB_DATABASE;
 
 var { database } = include('databaseConnection');
 
+async function sendWebPushNotification(subscription, payload) {
+  try {
+    await webpush.sendNotification(subscription, payload);
+    console.log('Web notification sent successfully');
+  } catch (error) {
+    console.error('Error sending web notification:', error);
+  }
+}
 
-  const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      // Specify the destination folder where uploaded files should be stored
-      cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-      // Specify how the file should be named
-      cb(null, file.originalname);
-    }
-  });
-  const upload = multer({ storage: storage });
-
-router.use(express.json());
-
-router.use(express.urlencoded({ extended: false }));
 
 function requireAuth(req, res, next) {
 	if (req.session.authenticated) {
@@ -110,8 +134,15 @@ const share = {
         body: 'A new report has been added',
         url: `/detail/${reportId}`,
       });
-      console.log('Sending web notification:', webMessage);
-      await webpush.sendNotification(webSubscription, webMessage);
+      
+      const subscriptions = await database.db(mongodb_database).collection('subscriptions').find().toArray();
+
+
+      subscriptions.forEach(subscription => {
+        if (subscription.userId !== req.session.userId) {
+          sendWebPushNotification(subscription, webMessage);
+        }
+      });
       console.log('Web notification sent successfully');
     }
     res.render('report_succeed.ejs', { reportId, authenticated: isAuthenticated});

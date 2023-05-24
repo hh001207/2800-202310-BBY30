@@ -40,6 +40,8 @@ var mongoStore = MongoStore.create({
 	},
 });
 
+
+
 app.use(
 	session({
 		secret: node_session_secret,
@@ -113,6 +115,10 @@ app.use('/', profileRouter);
 app.get('/ask', askAIRouter);
 
 app.post('/ask', askAIRouter);
+
+app.use('/webpush', require('./routes/report'));
+
+app.use('/report', reportRouter);
 
 app.get('*', (req, res) => {
 	var isAuthenticated = req.session.authenticated;
