@@ -12,10 +12,15 @@
       <label for="type" class="form-label">type:</label>
       <div class="input-group">
         <select name="type" id="type" class="form-select" aria-label="type">
-          <option value="Theft" <% if (report.type === 'Theft') { %>selected<% } %>>Theft</option>
-          <option value="Rubbery" <% if (report.type === 'Rubbery') { %>selected<% } %>>Rubbery</option>
-          <option value="Home Invasion" <% if (report.type === 'Home Invasion') { %>selected<% } %>>Home Invasion</option>
-          <option value="Car Accident" <% if (report.type === 'Car Accident') { %>selected<% } %>>Car Accident</option>
+          <option value="breakAndEnterCommercial" <% if (report.type === 'breakAndEnterCommercial') { %>selected<% } %>>Break and Enter Commercial</option> 
+          <option value = "breakAndEnterResidential" <% if (report.type === 'breakAndEnterResidential') { %>selected<% } %>>Break and Enter Residential/Other</option>  
+          <option value = "homicide" <% if (report.type === 'homicide') { %>selected<% } %>>Homicide</option>
+          <option value = "mischief" <% if (report.type === 'mischief') { %>selected<% } %>>Mischief</option>
+          <option value = "offenseAgainstPerson" <% if (report.type === 'offenseAgainstPerson') { %>selected<% } %>>Offense Against a Person</option>
+          <option value = "otherTheft" <% if (report.type === 'otherTheft') { %>selected<% } %>>Other Theft</option>
+          <option value = "theftFromVehicle" <% if (report.type === 'theftFromVehicle') { %>selected<% } %>>Theft from Vehicle</option>
+          <option value = "theftOfBicycle" <% if (report.type === 'theftOfBicycle') { %>selected<% } %>>Theft of Bicycle</option>
+          <option value = "theftOfVehicle" <% if (report.type === 'theftOfVehicle') { %>selected<% } %>>Theft of Vehicle</option>
           <option value="Other" <% if (report.type === 'Other') { %>selected<% } %>>Other</option>
         </select>
         <input type="text" name="other_type" id="other_type" class="form-control d-none" placeholder="Enter type" value="<%= report.type %>" <% if (report.type === 'Other') { %>style="display: block;"<% } %> />
@@ -29,7 +34,32 @@
           <input type="text" name="street" id="street" class="form-control" placeholder="Street" value="<%= report.location.street || '' %>" required />
         </div>
         <div class="col-md-4">
-          <input type="text" name="city" id="city" class="form-control" placeholder="City" value="<%= report.location.city || '' %>" required />
+          <select name="city" name="city" id=“city” class="form-control" placeholder="City" required>
+            <option value="arbutusRidge" <% if(report.location.city === 'arbutusRidge') {%>selected<%} %>>Arbutus Ridge</option>
+            <option value="centralBusinessDistrict" <% if(report.location.city === 'centralBusinessDistrict') {%>slected<%} %>>Central Business District</option>
+            <option value="dunbarSouthlands" <% if(report.location.city === 'dunbarSouthlands') {%>slected<%} %>>Dunbar-Southlands</option>
+            <option value="fairview" <% if(report.location.city === 'fairview') {%>slected<%} %>>Fairview</option>
+            <option value="grandviewWoodland" <% if(report.location.city === 'grandviewWoodland') {%>slected<%} %>>Grandview-Woodland</option>
+            <option value="hastingsSunrise" <% if(report.location.city === 'hastingsSunrise') {%>slected<%} %>>Hastings-Sunrise</option>
+            <option value="kensingtonCedarCottage" <% if(report.location.city === 'kensingtonCedarCottage') {%>slected<%} %>>Kensington-Cedar Cottage</option>
+            <option value="kerrisdale" <% if(report.location.city === 'kerrisdale') {%>slected<%} %>>Kerrisdale</option>
+            <option value="killarney" <% if(report.location.city === 'killarney') {%>slected<%} %>>Killarney</option>
+            <option value="kitsilano" <% if(report.location.city === 'kitsilano') {%>slected<%} %>>Kitsilano</option>
+            <option value="marpole" <% if(report.location.city === 'marpole') {%>slected<%} %>>Marpole</option>
+            <option value="mountPleasant" <% if(report.location.city === 'mountPleasant') {%>slected<%} %>>Mount Pleasant</option>
+            <option value="musqueam" <% if(report.location.city === 'musqueam') {%>slected<%} %>>Musqueam</option>
+            <option value="oakridge" <% if(report.location.city === 'oakridge') {%>slected<%} %>>Oakridge</option>
+            <option value="renfrewCollingwood" <% if(report.location.city === 'renfrewCollingwood') {%>slected<%} %>>Renfrew-Collingwood</option>
+            <option value="rileyPark" <% if(report.location.city === 'rileyPark') {%>slected<%} %>>Riley Park</option>
+            <option value="shaughnessy" <% if(report.location.city === 'shaughnessy') {%>slected<%} %>>Shaughnessy</option>
+            <option value="southCambie" <% if(report.location.city === 'southCambie') {%>slected<%} %>>South Cambie</option>
+            <option value="stanleyPark" <% if(report.location.city === 'stanleyPark') {%>slected<%} %>>Stanley Park</option>
+            <option value="strathcona" <% if(report.location.city === 'strathcona') {%>slected<%} %>>Strathcona</option>
+            <option value="sunset" <% if(report.location.city === 'sunset') {%>slected<%} %>>Sunset</option>
+            <option value="victoriaFraserview" <% if(report.location.city === 'victoriaFraserview') {%>slected<%} %>>Victoria-Fraserview</option>
+            <option value="westEnd" <% if(report.location.city === 'westEnd') {%>slected<%} %>>West End</option>
+            <option value="westPointGrey" <% if(report.location.city === 'westPointGrey') {%>slected<%} %>>West Point Grey</option>
+          </select>
         </div>
         <div class="col-md-4">
           <input type="text" name="postCode" id="postCode" class="form-control" placeholder="Post Code" value="<%= report.location.postCode || '' %>" required />

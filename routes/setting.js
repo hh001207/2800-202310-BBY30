@@ -62,25 +62,4 @@ router.post('/change_password', async (req, res) => {
 	}
 });
 
-
-// router.post('/change_password', async (req, res) => {
-// 	if (!req.session.username) {
-// 		return res.redirect('/login');
-// 	}
-
-// 	const newPassword = req.body.new_password;
-// 	const username = req.session.username;
-
-// 	var hashedPassword = await bcrypt.hash(newPassword, saltRounds);
-
-// 	try {
-// 		await userCollection.findOneAndUpdate({ username: username }, { $set: { password: hashedPassword } });
-// 		console.log('Password changed!');
-// 		res.redirect('/');
-// 	} catch (err) {
-// 		console.log(err);
-// 		res.send('Error!');
-// 	}
-// });
-
 module.exports = router;

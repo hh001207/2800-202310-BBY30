@@ -22,6 +22,7 @@ const mongodb_password = process.env.MONGODB_PASSWORD;
 const mongodb_database = process.env.MONGODB_DATABASE;
 const mongodb_session_secret = process.env.MONGODB_SESSION_SECRET;
 
+
 app.set('view engine', 'ejs');
 
 const node_session_secret = process.env.NODE_SESSION_SECRET;

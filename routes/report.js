@@ -3,6 +3,16 @@ const bcrypt = require('bcrypt');
 const Joi = require('joi');
 const router = express.Router();
 const multer = require('multer');
+const firebaseAdmin = require('firebase-admin');
+
+
+var admin = require("firebase-admin");
+
+var serviceAccount = require('./serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 const expireTime = 1 * 60 * 60 * 1000;
 
@@ -54,7 +64,7 @@ router.post('/reporting', upload.single('picture'), async (req, res) => {
 	  return;
 	}
 	
-	const { type, YEAR, MONTH, DAY, HOUR, MINUTES, description, street, city, postCode } = req.body;
+	const { type, YEAR, MONTH, DAY, HOUR, MINUTES, description, street, city, postCode, mobileToken, webSubscription } = req.body;
 	const location = `${street}, ${city}, ${postCode}`;
 	console.log('Location:', street, city, postCode);
 
@@ -70,7 +80,8 @@ const share = {
   description: description || '',
 	location: location || '',
   picture: req.file ? req.file.filename : '',
-	
+	mobileToken: mobileToken || '',
+  webSubscription: webSubscription || '',
   };
 
   try {
@@ -79,6 +90,30 @@ const share = {
     const result = await shareCollection.insertOne(share);  
     const reportId = result.insertedId;
     console.log('Inserted report with ID:', reportId);
+    if (mobileToken) {
+       const mobileMessage = {
+        token: mobileToken,
+        notification: {
+          title: 'New report',
+          body: 'A new report has been added',
+        }
+       }
+       console.log('Sending mobile notification:', mobileMessage);
+       await firebaseAdmin.messaging().send(mobileMessage);
+       console.log('Mobile notification sent successfully');
+      
+    }
+   
+    if (webSubscription) {
+      const webMessage = JSON.stringify({
+        title: 'New report',
+        body: 'A new report has been added',
+        url: `/detail/${reportId}`,
+      });
+      console.log('Sending web notification:', webMessage);
+      await webpush.sendNotification(webSubscription, webMessage);
+      console.log('Web notification sent successfully');
+    }
     res.render('report_succeed.ejs', { reportId, authenticated: isAuthenticated});
 
   } catch (error) {
@@ -86,5 +121,6 @@ const share = {
     res.status(500).send(`Error adding share: ${error.message}`);
   }
 });
+
 
 module.exports = router;
