@@ -19,8 +19,11 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFKFtKYoZT8kPL4P4CP_U7WoxhaM0S8k&callback=initMap" async defer></script> <!-- Replace YOUR_GOOGLE_MAPS_API_KEY with your actual API key -->
 
   <script>
-    function initMap() {
-			const mapElement = document.getElementById("map");
+   async function initMap() {
+    const mapElement = document.getElementById('map');
+
+  const response = await fetch('/locations');
+  const locations = await response.json();
 
 // Check if Geolocation API is supported
 if (navigator.geolocation) {
@@ -102,62 +105,40 @@ if (navigator.geolocation) {
       });
     }
   });
-	setMarkers(map);
+	setMarkers(map, locations);
 }
 
-'use strict';
+async function setMarkers(map, locations) {
+  // Define image and shape here
+  const image = {
+    url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+    size: new google.maps.Size(20, 32),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(0, 32),
+  };
 
+  const shape = {
+    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+    type: "poly",
+  };
 
-    // Data for the markers consisting of a name, a LatLng, a zIndex, and an image URL for the flag
-    const locations = [
-      { name: "Brentwood station", lat: 48.563076, lng: -123.466542, zIndex: 4, imageUrl: "https://example.com/flag1.png" },
-      { name: "Burnaby Museum", lat: 49.2392512284724, lng: -122.96579117439661, zIndex: 5, imageUrl: "https://example.com/flag2.png" },
-      { name: "Cronulla Beach", lat: -34.028249, lng: 151.157507, zIndex: 3, imageUrl: "https://example.com/flag3.png" },
-      { name: "Manly Beach", lat: -33.80010128657071, lng: 151.28747820854187, zIndex: 2, imageUrl: "https://example.com/flag4.png" },
-      { name: "Maroubra Beach", lat: -33.950198, lng: 151.259302, zIndex: 1, imageUrl: "https://example.com/flag5.png" }
-    ];
+  for (let i = 0; i < locations.length; i++) {
+    const location = locations[i];
 
-    function setMarkers(map) {
-      // Adds markers to the map.
-      // Marker sizes are expressed as a Size of X,Y where the origin of the image
-      // (0,0) is located in the top left of the image.
-      // Origins, anchor positions and coordinates of the marker increase in the X
-      // direction to the right and in the Y direction down.
-      const image = {
-        url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-        // This marker is 20 pixels wide by 32 pixels high.
-        size: new google.maps.Size(20, 32),
-        // The origin for this image is (0, 0).
-        origin: new google.maps.Point(0, 0),
-        // The anchor for this image is the base of the flagpole at (0, 32).
-        anchor: new google.maps.Point(0, 32),
-      };
-      // Shapes define the clickable region of the icon. The type defines an HTML
-      // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-      // The final coordinate closes the poly by connecting to the first coordinate.
-      const shape = {
-        coords: [1, 1, 1, 20, 18, 20, 18, 1],
-        type: "poly",
-      };
+    new google.maps.Marker({
+      position: { lat: location.X, lng: location.Y }, // using 'X' and 'Y' fields from your data
+      map,
+      icon: image,
+      shape: shape,
+      title: location.name,
+      zIndex: location.zIndex,
+    });
+  }
+}
 
-      for (let i = 0; i < locations.length; i++) {
-        const location = locations[i];
+window.initMap = initMap;
 
-        new google.maps.Marker({
-          position: { lat: location.lat, lng: location.lng },
-          map,
-          icon: image,
-          shape: shape,
-          title: location.name,
-          zIndex: location.zIndex,
-        });
-      }
-    }
-
-    window.initMap = initMap;
-
-  </script>
+</script>
 </body>
 
 <%- include("templates/footer") %>
-
