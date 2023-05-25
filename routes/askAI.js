@@ -19,7 +19,11 @@ router.use(bodyParser.json());
 // Route to render AI question form
 router.get('/ask', (req, res) => {
 	var isAuthenticated = req.session.authenticated;
-	res.render('askAI.ejs', { username: req.session.username, authenticated: isAuthenticated });
+	if (isAuthenticated) {
+		res.render('askAI.ejs', { username: req.session.username, authenticated: isAuthenticated });
+	} else {
+		res.redirect('/login');
+	}
 });
 
 // Route to post a question to AI and get a response
