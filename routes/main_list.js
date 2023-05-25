@@ -8,13 +8,32 @@ const reportsCollection = database.db(mongodb_database).collection('shares');
 
 router.get('/main_list', async function (req, res, next) {
   try {
-    const report_list = await reportsCollection.find().toArray();
-    // console.log(report_list);  // add this line
-    res.render('main_list', { report_list, authenticated: req.session.authenticated });
+    const pageSize = 5; // Number of items per page
+    const currentPage = parseInt(req.query.page) || 1;
+    const skip = (currentPage - 1) * pageSize;
+    
+    const reportListCount = await reportsCollection.countDocuments();
+    const totalPages = Math.ceil(reportListCount / pageSize);
+
+    const reportList = await reportsCollection
+      .find()
+      .skip(skip)
+      .limit(pageSize)
+      .toArray();
+
+    res.render('main_list', {
+      report_list: reportList,
+      currentPage: currentPage,
+      totalPages: totalPages,
+      startIndex: skip,
+      endIndex: skip + reportList.length - 1,
+      authenticated: req.session.authenticated
+    });
   } catch (error) {
     next(error);
   }
 });
+
 
 
 app.get('/filteredReports', async (req, res) => {
