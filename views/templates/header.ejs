@@ -26,9 +26,16 @@
 
 		<!-- Load libraries here -->
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="/service-worker.js"></script>
+
 		
 		<!-- Load styles here -->
 		<link rel="stylesheet" href="/styles/skeleton.css" />
+
+		<!-- Load font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
 	</head>
 	<body>
 		<nav class="navbar mb-5">
@@ -46,35 +53,38 @@
 					</button>
 					<ul id="dropdown_menu" class="dropdown-menu dropdown-menu-end">
 						<li>
-							<button class="dropdown-item" type="button" onclick="window.location.href = '/main_map'">main_map</button>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/main_map'">
+								<img src="/images/map.png" alt="map" style="float: left; margin-right: 10px;"> Map
+							</button>
 						</li>
 						<li>
 							<button class="dropdown-item" type="button" onclick="window.location.href = '/main_list'">
-								main_list
+								<img src="/images/list.png" alt="list" style="float: left; margin-right: 10px;"> List
 							</button>
-						</li>
-						<li>
-							<button class="dropdown-item" type="button" onclick="window.location.href = '/setting'">setting</button>
 						</li>
 						<li>
 							<button class="dropdown-item" type="button" onclick="window.location.href = '/about_contact'">
-								about
+								<img src="/images/about.png" alt="about" style="float: left; margin-right: 10px;"> About us
 							</button>
 						</li>
 						<li>
-							<button class="dropdown-item" type="button" onclick="window.location.href = '/profile'">profile</button>
+							<button class="dropdown-item" type="button" id="reportButton">
+								<img src="/images/report.png" alt="report" style="float: left; margin-right: 10px;"> Report
+							</button>
 						</li>
-						<li>
-							<button class="dropdown-item" type="button" id="reportButton">report</button>
-						</li>
+						
 						<!-- Display logout button if user is loggedin and display login button if user is not loggedin. -->
 						<% if (authenticated) { %>
 						<li>
-							<button class="dropdown-item" type="button" onclick="window.location.href = '/logout'">logout</button>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/logout'">
+								<img src="/images/logout.png" alt="logout" style="float: left; margin-right: 10px;"> logout
+							</button>
 						</li>
 						<% } else { %>
 						<li>
-							<button class="dropdown-item" type="button" onclick="window.location.href = '/login'">login</button>
+							<button class="dropdown-item" type="button" onclick="window.location.href = '/login'">
+								<img src="/images/login.png" alt="login" style="float: left; margin-right: 10px;"> login
+							</button>
 						</li>
 						<% } %>
 					</ul>

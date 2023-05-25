@@ -12,11 +12,11 @@ const userCollection = database.db(mongodb_database).collection('users');
 
 router.get('/setting', (req, res) => {
 	var isAuthenticated = req.session.authenticated;
-   if (isAuthenticated) {
-	res.render('setting.ejs', { authenticated: isAuthenticated });
-   } else {
-      res.redirect('/login');
-   }
+	if (isAuthenticated) {
+		res.render('setting.ejs', { authenticated: isAuthenticated });
+	} else {
+		res.redirect('/login');
+	}
 });
 
 router.post('/change_password', async (req, res) => {
@@ -30,7 +30,6 @@ router.post('/change_password', async (req, res) => {
 	const username = req.session.username;
 
 	try {
-		
 		const user = await userCollection.findOne({ username: username });
 		const passwordMatch = await bcrypt.compare(oldPassword, user.password);
 		if (!passwordMatch) {
@@ -38,49 +37,26 @@ router.post('/change_password', async (req, res) => {
 			return res.send('Invalid old password');
 		}
 
-	
 		if (newPassword !== confirmPassword) {
 			console.log('New password and confirm password do not match');
 			return res.send('New password and confirm password do not match');
 		}
 
-		
 		const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
 
-        try {
-		await userCollection.findOneAndUpdate({ username: username }, { $set: { password: hashedPassword } });
+		try {
+			await userCollection.findOneAndUpdate({ username: username }, { $set: { password: hashedPassword } });
 
-		console.log('Password changed!');
-		res.redirect('/');
-	} catch (err) {
-		console.log(err);
-		res.send('Error!');
-	}
+			console.log('Password changed!');
+			res.redirect('/');
+		} catch (err) {
+			console.log(err);
+			res.send('Error!');
+		}
 	} catch (err) {
 		console.log(err);
 		res.send('Error!');
 	}
 });
-
-
-// router.post('/change_password', async (req, res) => {
-// 	if (!req.session.username) {
-// 		return res.redirect('/login');
-// 	}
-
-// 	const newPassword = req.body.new_password;
-// 	const username = req.session.username;
-
-// 	var hashedPassword = await bcrypt.hash(newPassword, saltRounds);
-
-// 	try {
-// 		await userCollection.findOneAndUpdate({ username: username }, { $set: { password: hashedPassword } });
-// 		console.log('Password changed!');
-// 		res.redirect('/');
-// 	} catch (err) {
-// 		console.log(err);
-// 		res.send('Error!');
-// 	}
-// });
 
 module.exports = router;

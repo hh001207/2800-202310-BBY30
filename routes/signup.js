@@ -1,24 +1,27 @@
+// Import libraries
 const express = require('express');
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 
-const router = express.Router();
-
+// Configuration
 const saltRounds = 12;
-
 const expireTime = 1 * 60 * 60 * 1000;
-
 const mongodb_database = process.env.MONGODB_DATABASE;
 
-var { database } = include('databaseConnection');
+// Create a new router
+const router = express.Router();
 
+// Initialize the database connection
+var { database } = include('databaseConnection');
 const userCollection = database.db(mongodb_database).collection('users');
 
+// GET: /signup
 router.get('/signup', (req, res) => {
 	var isAuthenticated = req.session.authenticated;
-  res.render('signup.ejs', {authenticated: isAuthenticated });
+	res.render('signup.ejs', { authenticated: isAuthenticated });
 });
 
+// POST: /register_user
 router.post('/register_user', async (req, res) => {
 	var username = req.body.username;
 	var firstname = req.body.firstname;
@@ -26,11 +29,13 @@ router.post('/register_user', async (req, res) => {
 	var email = req.body.email;
 	var password = req.body.password;
 
+	// Basic form validation
 	if (!username || !email || !password || !firstname || !lastname) {
 		res.send(`All fields are required. <br><br>Please <a href='/signup'>try again</a>`);
 		return;
 	}
 
+	// Advanced form validation
 	const schema = Joi.object({
 		username: Joi.string().alphanum().max(20).required(),
 		firstname: Joi.string().required(),
@@ -41,13 +46,15 @@ router.post('/register_user', async (req, res) => {
 
 	const validationResult = schema.validate({ username, firstname, lastname, email, password });
 	if (validationResult.error != null) {
-		console.log(validationResult.error);
-		res.redirect('/signup');
+		var isAuthenticated = req.session.authenticated;
+		res.render('error', { authenticated: isAuthenticated, error: `${validationResult.error.message}` })
 		return;
 	}
 
+	// Hash password
 	var hashedPassword = await bcrypt.hash(password, saltRounds);
 
+	// Insert user into database
 	await userCollection.insertOne({
 		username: username,
 		firstname: firstname,
@@ -55,8 +62,8 @@ router.post('/register_user', async (req, res) => {
 		email: email,
 		password: hashedPassword,
 	});
-	console.log('Inserted user');
 
+	// Save user in session
 	req.session.authenticated = true;
 	req.session.username = username;
 	req.session.firstname = firstname;
@@ -65,7 +72,9 @@ router.post('/register_user', async (req, res) => {
 	req.session.password = hashedPassword;
 	req.session.cookie.maxAge = expireTime;
 
+	// Redirect to home page
 	res.redirect('/');
 });
 
+// Export the router
 module.exports = router;

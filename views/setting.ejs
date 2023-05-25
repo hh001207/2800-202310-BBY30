@@ -139,6 +139,7 @@
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<script>
 		$(document).ready(function() {
 		  // Add click event listener to the on/off button
@@ -155,14 +156,21 @@
 			} else {
 			  $(this).parent().find(".slider").removeClass("active");
 			}
-		  });
-	  
+		  
+		  
+		  // Store the checkbox state in localStorage
+		  localStorage.setItem("alertToggleState", $(this).prop("checked"));});
 		  // Initialize the slider based on the initial checkbox state
-		  var initialChecked = $("#alertToggle").prop("checked");
-		  if (initialChecked) {
-			$("#alertToggle").parent().find(".slider").addClass("active");
-		  }
-	  
+		  var storedAlertToggleState = localStorage.getItem("alertToggleState");
+		  console.log(storedAlertToggleState);
+		  if (storedAlertToggleState && storedAlertToggleState === "on") {
+    $("#alertToggle").prop("checked", true);
+    $("#alertToggle").parent().find(".slider").addClass("active");
+  } else {
+    $("#alertToggle").prop("checked", false);
+    $("#alertToggle").parent().find(".slider").removeClass("active");
+  }
+		
 		  // Add click event listener to the sound button
 		  $("#alertSoundToggle").click(function() {
 			// Toggle the active state of the slider
@@ -177,7 +185,18 @@
 			} else {
 			  $(this).parent().find(".slider").removeClass("active");
 			}
-		  });
+		  
+
+		    localStorage.setItem("alertSoundToggleState", $(this).prop("checked"));	});
+			var storedAlertSoundToggleState = localStorage.getItem("alertSoundToggleState");
+  			if (storedAlertSoundToggleState && storedAlertSoundToggleState === "on") {
+    		$("#alertSoundToggle").prop("checked", true);
+    		$("#alertSoundToggle").parent().find(".slider").addClass("active");
+  			} else {
+			$("#alertSoundToggle").prop("checked", false);
+			$("#alertSoundToggle").parent().find(".slider").removeClass("active");
+  			}
+		   
 
 		  $("#NotiToggle").click(function() {
 			// Toggle the active state of the slider

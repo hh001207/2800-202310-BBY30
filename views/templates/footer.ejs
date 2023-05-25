@@ -1,19 +1,22 @@
-		<footer class="navbar mt-5">
-			<div class="container-fluid d-flex justify-content-between align-items-center">
-				<!-- Logo -->
-				<img id="logoImg" src="/images/logo.png" alt="logo" />
-
-				<!-- Name -->
-				<a id="footerName" class="navbar-brand" href="/">VanWatch</a>
-
-				<!-- Contact us -->
-				<div>
-					<p id="footerContactUs">Contact Us</p>
-					<img class="contactImg" src="/images/facebook.png" alt="facebook" />
-					<img class="contactImg" src="/images/instagram.png" alt="instagram" />
-					<img class="contactImg" src="/images/twitter.png" alt="twitter" />
-				</div>
+<footer>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="footerIcon col-4 text-center d-flex flex-column align-items-center" onclick="goToPage('/')">
+				<img src="/images/home.png" alt="home" />
+				<p>Home</p>
 			</div>
-		</footer>
+			<div class="footerIcon col-4 text-center d-flex flex-column align-items-center" onclick="goToPage('/profile')">
+				<img src="/images/profile.png" style="width: 24px; height: 24px;" alt="profile" />
+				<p>Profile</p>
+			</div>
+			<div class="footerIcon col-4 text-center d-flex flex-column align-items-center" onclick="goToPage('/setting')">
+				<img src="/images/setting.png" alt="setting" />
+				<p>Setting</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
 	</body>
 </html>

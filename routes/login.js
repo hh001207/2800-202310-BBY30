@@ -1,52 +1,59 @@
+// Import libraries
 const express = require('express');
-
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 
+// Create a new router
 const router = express.Router();
 
-const expireTime = 1 * 60 * 60 * 1000;
-
-const mongodb_database = process.env.MONGODB_DATABASE;
-
-var { database } = include('databaseConnection');
-
-const userCollection = database.db(mongodb_database).collection('users');
-
+// Middleware to parse urlencoded bodies
 router.use(express.urlencoded({ extended: false }));
 
+// Configuration
+const expireTime = 1 * 60 * 60 * 1000;
+const mongodb_database = process.env.MONGODB_DATABASE;
+
+// Initialize the database connection
+var { database } = include('databaseConnection');
+const userCollection = database.db(mongodb_database).collection('users');
+
+// GET: /login
 router.get('/login', (req, res) => {
 	var isAuthenticated = req.session.authenticated;
-  res.render('login.ejs', {authenticated: isAuthenticated });
+	res.render('login.ejs', { authenticated: isAuthenticated });
 });
 
+// POST: /loggingin
 router.post('/loggingin', async (req, res) => {
 	var email = req.body.email;
 	var password = req.body.password;
 
-	
-	console.log(password);
+	// Validate the email
 	const schema = Joi.string().required();
 	const validationResult = schema.validate(email);
 	if (validationResult.error != null) {
-		res.render('error', { error: `${validationResult.error.message}` });
+		res.render('error', { error: `${validationResult.error.message}`, authenticated: req.session.authenticated });
 		return;
 	}
 
-	const result = await userCollection.find({ email: email }).project({ username: 1, password: 1, firstname: 1, lastname: 1 }).toArray();
+	// Find the user in the database
+	const result = await userCollection
+		.find({ email: email })
+		.project({ username: 1, password: 1, firstname: 1, lastname: 1 })
+		.toArray();
 
-	console.log(result);
-	
+	// Check the result
 	if (result.length === 0) {
-		res.render('error', { error: 'Invalid email or password' });
+		res.render('error', { error: 'Invalid email or password', authenticated: req.session.authenticated });
 		return;
 	} else if (result.length > 1) {
 		res.redirect('/loggedin');
 		return;
 	}
-	if (await bcrypt.compare(password, result[0].password)) {
-		console.log('correct password');
 
+	// Compare the password
+	if (await bcrypt.compare(password, result[0].password)) {
+		// Successful login
 		req.session.authenticated = true;
 		req.session.email = email;
 		req.session.firstname = result[0].firstname;
@@ -58,12 +65,13 @@ router.post('/loggingin', async (req, res) => {
 		res.redirect('/loggedin');
 		return;
 	} else {
-		console.log(result[0].password);
+		// Failed login
 		res.render('error', { error: 'Invalid password', authenticated: req.session.authenticated });
 		return;
 	}
 });
 
+// GET: /loggedin
 router.get('/loggedin', (req, res) => {
 	if (req.session.authenticated) {
 		res.redirect('/');
@@ -72,9 +80,11 @@ router.get('/loggedin', (req, res) => {
 	}
 });
 
+// GET: /logout
 router.get('/logout', (req, res) => {
 	req.session.destroy();
 	res.redirect('/');
 });
 
+// Export the router
 module.exports = router;
