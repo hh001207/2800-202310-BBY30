@@ -101,7 +101,7 @@ app.get('/edit_report', editreportRouter);
 
 app.get('/profile', profileRouter);
 
-app.use('/detail', detailRouter);
+app.get('/detail', detailRouter);
 
 app.get('/about_contact', aboutContactRouter);
 
