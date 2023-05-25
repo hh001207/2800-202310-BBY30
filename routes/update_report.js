@@ -1,3 +1,5 @@
+require('../utils.js');
+const path = require('path');
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
@@ -6,7 +8,7 @@ const { ObjectId } = require('mongodb');
 
 const mongodb_database = process.env.MONGODB_DATABASE;
 
-var { database } = include('databaseConnection');
+var { database } = include('./routes/databaseConnection');
 
 
 const storage = multer.diskStorage({

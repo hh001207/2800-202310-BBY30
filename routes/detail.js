@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongodb_database = process.env.MONGODB_DATABASE;
-const { database } = require('../databaseConnection');
+const { database } = require('./databaseConnection');
 const reportsCollection = database.db(process.env.MONGODB_DATABASE).collection('shares');
 const { ObjectId } = require('mongodb');
 

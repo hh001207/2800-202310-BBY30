@@ -1,4 +1,6 @@
 // Import libraries
+require('../utils.js');
+const path = require('path');
 const express = require('express');
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
@@ -14,7 +16,7 @@ const expireTime = 1 * 60 * 60 * 1000;
 const mongodb_database = process.env.MONGODB_DATABASE;
 
 // Initialize the database connection
-var { database } = include('databaseConnection');
+var { database } = include('./routes/databaseConnection');
 const userCollection = database.db(mongodb_database).collection('users');
 
 // GET: /login

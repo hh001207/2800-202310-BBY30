@@ -1,3 +1,5 @@
+require('../utils.js');
+const path = require('path');
 const express = require('express');
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
@@ -7,7 +9,7 @@ const { ObjectId } = require('mongodb');
 
 const mongodb_database = process.env.MONGODB_DATABASE;
 
-var { database } = include('databaseConnection');
+var { database } = include('./routes/databaseConnection');
 
 router.use(express.json());
 

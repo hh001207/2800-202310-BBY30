@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongodb_database = process.env.MONGODB_DATABASE;
-const { database } = require('../databaseConnection');
+const { database } = require('./databaseConnection');
 const userCollection = database.db(mongodb_database).collection('users');
 router.use(express.urlencoded({ extended: false }));
 router.use(express.urlencoded({ extended: false }));

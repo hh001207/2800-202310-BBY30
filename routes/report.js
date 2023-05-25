@@ -49,7 +49,7 @@ const expireTime = 1 * 60 * 60 * 1000;
 
 const mongodb_database = process.env.MONGODB_DATABASE;
 
-var { database } = include('databaseConnection');
+const { database } = include('./routes/databaseConnection');
 
 async function sendWebPushNotification(subscription, payload) {
   try {
