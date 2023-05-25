@@ -49,8 +49,8 @@ function setMarkers(map) {
   const locations = [
     {
       name: 'Brentwood station',
-      lat: 48.563076,
-      lng: -123.466542,
+      lat: 	49.26774,
+      lng: -123.00272,
       zIndex: 4,
       iconUrl: '/images/flag.png',
     },
