@@ -27,3 +27,7 @@
 	.input-group button:hover {
 		background-color: #45a049;
 	}
+
+	#collapseAccount {
+		margin-bottom: 100px;
+	}
