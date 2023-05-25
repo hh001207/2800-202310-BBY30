@@ -7,7 +7,6 @@
 <body>
 	<div class="container px-3 report_body">
 		<h1 class="display-4 text-center my-5">Report your vision, Secure your community!</h1>
-
 		<div class="col-md-10 mx-auto col-lg-5 container">
 			<form
 				class="p-4 p-md-5 border rounded-3 report_form"
@@ -19,15 +18,15 @@
 					<label for="type" class="form-label">Type:</label>
 					<div class="input-group">
 						<select name="type" id="type" class="form-select" aria-label="type">
-              <option value="breakAndEnterCommercial">Break and Enter Commercial</option>
-              <option value="breakAndEnterResidential">Break and Enter Residential/Other</option>
-              <option value="homicide">Homicide</option>
-              <option value="mischief">Mischief</option>
-              <option value="offenseAgainstPerson">Offense Against a Person</option>
-              <option value="otherTheft">Other Theft</option>
-              <option value="theftFromVehicle">Theft from Vehicle</option>
-              <option value="theftOfBicycle">Theft of Bicycle</option>
-              <option value="theftOfVehicle">Theft of Vehicle</option>
+							<option value="breakAndEnterCommercial">Break and Enter Commercial</option>
+							<option value="breakAndEnterResidential">Break and Enter Residential/Other</option>
+							<option value="homicide">Homicide</option>
+							<option value="mischief">Mischief</option>
+							<option value="offenseAgainstPerson">Offense Against a Person</option>
+							<option value="otherTheft">Other Theft</option>
+							<option value="theftFromVehicle">Theft from Vehicle</option>
+							<option value="theftOfBicycle">Theft of Bicycle</option>
+							<option value="theftOfVehicle">Theft of Vehicle</option>
 							<option value="Other">Other</option>
 						</select>
 						<input type="text" name="other_type" id="other_type" class="form-control d-none" placeholder="Enter type" />
@@ -40,32 +39,32 @@
 							<input type="text" name="street" id="street" class="form-control" placeholder="Street" required />
 						</div>
 						<div class="col-md-4">
-              <select name="city" name="city" id=“city” class="form-control" placeholder="City" required>
-                <option value="arbutusRidge">Arbutus Ridge</option>
-                <option value="centralBusinessDistrict">Central Business District</option>
-                <option value="dunbarSouthlands">Dunbar-Southlands</option>
-                <option value="fairview">Fairview</option>
-                <option value="grandviewWoodland">Grandview-Woodland</option>
-                <option value="hastingsSunrise">Hastings-Sunrise</option>
-                <option value="kensingtonCedarCottage">Kensington-Cedar Cottage</option>
-                <option value="kerrisdale">Kerrisdale</option>
-                <option value="killarney">Killarney</option>
-                <option value="kitsilano">Kitsilano</option>
-                <option value="marpole">Marpole</option>
-                <option value="mountPleasant">Mount Pleasant</option>
-                <option value="musqueam">Musqueam</option>
-                <option value="oakridge">Oakridge</option>
-                <option value="renfrewCollingwood">Renfrew-Collingwood</option>
-                <option value="rileyPark">Riley Park</option>
-                <option value="shaughnessy">Shaughnessy</option>
-                <option value="southCambie">South Cambie</option>
-                <option value="stanleyPark">Stanley Park</option>
-                <option value="strathcona">Strathcona</option>
-                <option value="sunset">Sunset</option>
-                <option value="victoriaFraserview">Victoria-Fraserview</option>
-                <option value="westEnd">West End</option>
-                <option value="westPointGrey">West Point Grey</option>
-              </select>
+							<select name="city" name="city" id="“city”" class="form-control" placeholder="City" required>
+								<option value="arbutusRidge">Arbutus Ridge</option>
+								<option value="centralBusinessDistrict">Central Business District</option>
+								<option value="dunbarSouthlands">Dunbar-Southlands</option>
+								<option value="fairview">Fairview</option>
+								<option value="grandviewWoodland">Grandview-Woodland</option>
+								<option value="hastingsSunrise">Hastings-Sunrise</option>
+								<option value="kensingtonCedarCottage">Kensington-Cedar Cottage</option>
+								<option value="kerrisdale">Kerrisdale</option>
+								<option value="killarney">Killarney</option>
+								<option value="kitsilano">Kitsilano</option>
+								<option value="marpole">Marpole</option>
+								<option value="mountPleasant">Mount Pleasant</option>
+								<option value="musqueam">Musqueam</option>
+								<option value="oakridge">Oakridge</option>
+								<option value="renfrewCollingwood">Renfrew-Collingwood</option>
+								<option value="rileyPark">Riley Park</option>
+								<option value="shaughnessy">Shaughnessy</option>
+								<option value="southCambie">South Cambie</option>
+								<option value="stanleyPark">Stanley Park</option>
+								<option value="strathcona">Strathcona</option>
+								<option value="sunset">Sunset</option>
+								<option value="victoriaFraserview">Victoria-Fraserview</option>
+								<option value="westEnd">West End</option>
+								<option value="westPointGrey">West Point Grey</option>
+							</select>
 						</div>
 						<div class="col-md-4">
 							<input type="text" name="postCode" id="postCode" class="form-control" placeholder="Post Code" required />
@@ -85,6 +84,10 @@
 				<div class="d-flex justify-content-center">
 					<button type="submit" class="submit_button btn">Report</button>
 				</div>
+
+				<!-- Add the hidden input field for webSubscription -->
+  				<input type="hidden" name="webSubscription" value="true">
+
 			</form>
 		</div>
 	</div>

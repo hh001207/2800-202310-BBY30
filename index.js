@@ -22,6 +22,7 @@ const mongodb_password = process.env.MONGODB_PASSWORD;
 const mongodb_database = process.env.MONGODB_DATABASE;
 const mongodb_session_secret = process.env.MONGODB_SESSION_SECRET;
 
+
 app.set('view engine', 'ejs');
 
 const node_session_secret = process.env.NODE_SESSION_SECRET;
@@ -38,6 +39,8 @@ var mongoStore = MongoStore.create({
 		secret: mongodb_session_secret,
 	},
 });
+
+
 
 app.use(
 	session({
@@ -113,12 +116,66 @@ app.get('/ask', askAIRouter);
 
 app.post('/ask', askAIRouter);
 
+app.use('/webpush', require('./routes/report'));
+
+app.use('/report', reportRouter);
+
 app.get('*', (req, res) => {
 	var isAuthenticated = req.session.authenticated;
 	res.status(404);
 	res.render('404', {authenticated: isAuthenticated });
 });
 
+async function sendWebPushNotification(subscription, message) {
+	try {
+	  const response = await fetch('/webpush', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+		  subscription,
+		  message,
+		}),
+	  });
+  
+	  if (!response.ok) {
+		throw new Error('Failed to send push notification');
+	  }
+  
+	  console.log('Push notification sent successfully');
+	} catch (error) {
+	  console.error('Error sending push notification:', error);
+	}
+  }
+
+  app.post('/webpush', async (req, res) => {
+	const { subscription, message } = req.body;
+  
+	try {
+	  const webPush = require('web-push');
+	  const vapidKeys = {
+		publicKey: process.env.VAPID_PUBLIC_KEY,
+		privateKey: process.env.VAPID_PRIVATE_KEY,
+	  };
+  
+	  webPush.setVapidDetails(
+		'mailto:example@example.com',
+		vapidKeys.publicKey,
+		vapidKeys.privateKey
+	  );
+  
+	  const payload = JSON.stringify(message);
+  
+	  await webPush.sendNotification(subscription, payload);
+  
+	  res.sendStatus(200);
+	} catch (error) {
+	  console.error('Error sending push notification:', error);
+	  res.sendStatus(500);
+	}
+  });
+  
 
 app.listen(port, () => {
 	console.log('Node application listening on port ' + port);
