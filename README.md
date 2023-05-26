@@ -12,12 +12,18 @@ The file structure of the VanWatch project includes the following:
 
 - README.md: Project documentation and instructions.
 - index.js: Main server file for the backend.
-- package.json: File containing project dependencies and scripts.
-- src/: Directory containing the source code for the frontend.
-- src/components/: Folder containing reusable React Native components.
-- src/screens/: Folder containing different app screens and their respective components.
-- src/services/: Folder containing API service files for server communication.
-- src/utils/: Folder containing utility functions and helper files.
+- node_modules/: Folder containing project dependencies (not shown in the initial list).
+- public/: Folder for public assets (not shown in the initial list).
+- public/images/: Folder containing images for the frontend (not shown in the initial list).
+- public/scripts/: Folder containing scripts for the frontend (not shown in the initial list).
+- public/styles/: Folder containing stylesheets for the frontend (not shown in the initial list).
+- public/service-worker.js: Service worker file for caching (not shown in the initial list).
+- routes/: Folder containing server routes (not shown in the initial list).
+- uploads/: Folder for uploaded files (not shown in the initial list).
+- views/: Folder containing server-side views (not shown in the initial list).
+- .gitignore: File specifying which files and directories to ignore in version control (not shown in the initial list).
+- dev.txt: Text file for development purposes (not shown in the initial list).
+- utils.js: JavaScript file with utility functions (not shown in the initial list).
 ### How to Install or Run the Project
 To run the VanWatch project, follow these steps:
 
@@ -29,7 +35,6 @@ To run the VanWatch project, follow these steps:
   - MONGODB_URL: URL for connecting to the MongoDB database.
   - GOOGLE_MAPS_API_KEY: API key for Google Maps integration.
   - FIREBASE_CONFIG: Firebase configuration object for push notifications.
-  - TENSORFLOW_API_KEY: API key for TensorFlow AI services.
 6. Start the backend server by running node index.js or npm start in the root directory.
 7. Navigate to the src/ directory and install frontend dependencies by running npm install.
 8. Start the app on an Android or iOS emulator by running npx react-native run-android or npx react-native run-ios, respectively.
