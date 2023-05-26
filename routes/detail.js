@@ -3,7 +3,7 @@ const router = express.Router();
 const app = express();
 const mongodb = require('mongodb');
 const mongodb_database = process.env.MONGODB_DATABASE;
-const { database } = require('../databaseConnection');
+const { database } = require('./databaseConnection');
 const sharesCollection = database.db(mongodb_database).collection('shares');
 console.log(sharesCollection)
 

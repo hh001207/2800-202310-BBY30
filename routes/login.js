@@ -14,7 +14,7 @@ const expireTime = 1 * 60 * 60 * 1000;
 const mongodb_database = process.env.MONGODB_DATABASE;
 
 // Initialize the database connection
-var { database } = include('databaseConnection');
+var { database } = include('./routes/databaseConnection');
 const userCollection = database.db(mongodb_database).collection('users');
 
 // GET: /login

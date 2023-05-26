@@ -6,7 +6,7 @@ const router = express.Router();
 
 const mongodb_database = process.env.MONGODB_DATABASE;
 
-var { database } = include('databaseConnection');
+var { database } = include('./routes/databaseConnection');
 
 const userCollection = database.db(mongodb_database).collection('users');
 

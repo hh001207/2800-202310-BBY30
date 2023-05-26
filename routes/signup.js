@@ -12,7 +12,7 @@ const mongodb_database = process.env.MONGODB_DATABASE;
 const router = express.Router();
 
 // Initialize the database connection
-var { database } = include('databaseConnection');
+var { database } = include('./routes/databaseConnection');
 const userCollection = database.db(mongodb_database).collection('users');
 
 // GET: /signup
