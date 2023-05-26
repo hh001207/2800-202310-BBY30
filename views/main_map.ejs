@@ -1,26 +1,26 @@
 <%- include("templates/header") %>
 
 <head>
-	<!-- Load styles here -->
-	<link rel="stylesheet" href="/styles/main_map.css" />
+  <!-- Load styles here -->
+  <link rel="stylesheet" href="/styles/main_map.css" />
 </head>
 
 <body>
-	<div class="d-flex justify-content-center">
-		<div class="col-lg-3 col-md-4 col-sm-12"></div>
-		<div class="col-lg-6 col-md-4 col-sm-12 d-flex justify-content-center">
-			<div id="map" style="width: 1600px; height: 725px"></div>
-		</div>
-		<div class="col-lg-3 col-md-4 col-sm-12"></div>
-	</div>
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-3 col-md-4 col-sm-12"></div>
+    <div class="col-lg-6 col-md-4 col-sm-12 d-flex justify-content-center">
+      <div id="map"></div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-12"></div>
+  </div>
 
-	<!-- Load scripts here -->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFKFtKYoZT8kPL4P4CP_U7WoxhaM0S8k&callback=initMap"
-		async
-		defer
-	></script>
-	<script src="/scripts/main_map.js"></script>
+  <!-- Load scripts here -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFKFtKYoZT8kPL4P4CP_U7WoxhaM0S8k&callback=initMap"
+    async
+    defer
+  ></script>
+  <script src="/scripts/main_map.js"></script>
 </body>
 
 <%- include("templates/footer") %>
