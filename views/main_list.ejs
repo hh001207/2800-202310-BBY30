@@ -134,30 +134,32 @@
       <ul class="list-group list-group-flush">
         <% report_list.forEach(function(crime){ %>
           <li class="list-group-item">
-            <div class="row mt-3 mb-3">
-              <div class="col-8">
-                 <p>
-                  <img src="/uploads/<%= crime.picture %>" alt="Report Picture" class="img-fluid" style="float: right; max-width: 250px; max-height: 250px;" />
-                </p>
-                <h2>
-                  <%= crime.type %>
-                </h2>
-                <p>
-                  Location : <%= crime.location %>
-                </p>
-                <p>
-                  Time : <%= crime.MONTH %>/<%= crime.DAY %>/<%= crime.YEAR %> - <%= (crime.HOUR % 12===0) ? 12 : crime.HOUR %
-                          12 %>:<%= crime.MINUTES %>
-                            <%= (crime.HOUR>= 12) ? 'PM' : 'AM' %>
-                </p>
-                <p>
-                  Description : <%= crime.description %>
-                </p>
-               
+            <div class="card mt-3 mb-3">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="/uploads/<%= crime.picture %>" alt="Report Picture" class="card-img" />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h2 class="card-title">
+                      <%= crime.type %>
+                    </h2>
+                    <p class="card-text">
+                      <strong>Location :</strong> <%= crime.location %>
+                    </p>
+                    <p class="card-text">
+                      <strong>Time :</strong> <%= crime.MONTH %>/<%= crime.DAY %>/<%= crime.YEAR %> - <%= (crime.HOUR % 12===0) ? 12 : crime.HOUR % 12 %>:<%= crime.MINUTES %> <%= (crime.HOUR>= 12) ? 'PM' : 'AM' %>
+                    </p>
+                    <p class="card-text">
+                      <strong>Description :</strong> <%= crime.description %>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </li>
-          <% }) %>
+        <% }) %>
+        
       </ul>
       <!-- Pagination navigation -->
       <nav aria-label="Page navigation" class="text-center" style="margin-bottom: 100px;">
