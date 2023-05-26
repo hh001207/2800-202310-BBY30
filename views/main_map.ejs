@@ -7,130 +7,16 @@
 
 <body>
   <div class="d-flex justify-content-center">
-		<div class="col-lg-3 col-md-4 col-sm-12"></div>
-		<div class="col-lg-6 col-md-4 col-sm-12 d-flex justify-content-center">
-			<div id="map" style="width: 1600px; height: 725px;"></div>
-		</div>
-		<div class="col-lg-3 col-md-4 col-sm-12"></div>
-	</div>
-	
+    <div id="map"></div>
+  </div>
 
   <!-- Load scripts here -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFKFtKYoZT8kPL4P4CP_U7WoxhaM0S8k&callback=initMap" async defer></script> <!-- Replace YOUR_GOOGLE_MAPS_API_KEY with your actual API key -->
-
-  <script>
-    function initMap() {
-			const mapElement = document.getElementById("map");
-
-// Check if Geolocation API is supported
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const userLatLng = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      const map = new google.maps.Map(mapElement, {
-        center: userLatLng,
-        zoom: 15,
-      });
-
-      // Optionally, you can add a marker at the user's position
-      new google.maps.Marker({
-        position: userLatLng,
-        map: map,
-        title: "You are here"
-      });
-    },
-    (error) => {
-      console.error("Error getting user's location:", error);
-      // Fallback: Center the map on a default location
-      const defaultLatLng = { lat: -33.866, lng: 151.196 };
-      const map = new google.maps.Map(mapElement, {
-        center: defaultLatLng,
-        zoom: 15,
-      });
-    }
-  );
-} else {
-  console.error("Geolocation is not supported by this browser.");
-  // Fallback: Center the map on a default location
-  const defaultLatLng = { lat: -33.866, lng: 151.196 };
-  const map = new google.maps.Map(mapElement, {
-    center: defaultLatLng,
-    zoom: 15,
-  });
-}
-  const request = {
-    placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
-    fields: ["name", "formatted_address", "place_id", "geometry"],
-  };
-  const infowindow = new google.maps.InfoWindow();
-  const service = new google.maps.places.PlacesService(map);
-
-  service.getDetails(request, (place, status) => {
-    if (
-      status === google.maps.places.PlacesServiceStatus.OK &&
-      place &&
-      place.geometry &&
-      place.geometry.location
-    ) {
-      const marker = new google.maps.Marker({
-        map,
-        position: place.geometry.location,
-      });
-
-      google.maps.event.addListener(marker, "click", () => {
-        const content = document.createElement("div");
-        const nameElement = document.createElement("h2");
-
-        nameElement.textContent = place.name;
-        content.appendChild(nameElement);
-
-        const placeIdElement = document.createElement("p");
-
-        placeIdElement.textContent = place.place_id;
-        content.appendChild(placeIdElement);
-
-        const placeAddressElement = document.createElement("p");
-
-        placeAddressElement.textContent = place.formatted_address;
-        content.appendChild(placeAddressElement);
-        infowindow.setContent(content);
-        infowindow.open(map, marker);
-      });
-    }
-  });
-	setMarkers(map);
-}
-
-'use strict';
-
-/** Helper function to generate a Google Maps directions URL */
-
-function setMarkers(map) {
-  // Retrieve dataset from the database
-  const dataset = getDataFromDatabase(); // Replace with your code to fetch data from the database
-
-  for (let i = 0; i < dataset.length; i++) {
-    const dataItem = dataset[i];
-
-    new google.maps.Marker({
-      position: { lat: dataItem.lat, lng: dataItem.lng },
-      map,
-      icon: image,
-      shape: shape,
-      title: dataItem.title,
-      zIndex: dataItem.zIndex,
-    });
-  }
-}
-
-window.initMap = initMap;
-
-  </script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFKFtKYoZT8kPL4P4CP_U7WoxhaM0S8k&callback=initMap"
+    async
+    defer
+  ></script>
+  <script src="/scripts/main_map.js"></script>
 </body>
 
 <%- include("templates/footer") %>
-

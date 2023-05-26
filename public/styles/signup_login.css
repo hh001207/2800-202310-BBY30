@@ -10,3 +10,7 @@ form {
 .submit_button:hover {
   background-color: #73956F;
 }
+
+.signup_body {
+  margin-bottom: 100px;
+}

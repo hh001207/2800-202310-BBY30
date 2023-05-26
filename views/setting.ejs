@@ -47,8 +47,8 @@
 							  </li>
 							  
 							  <li class="list-group-item">
-								<label for="alertDistance">Alert distance (km)</label>
-								<input type="number" id="alertDistance" placeholder="1~300" name="alertDistance" min="1" max="300" required style="width: 80px;" >
+								<label for="alertDistance">Alert distance (m)</label>
+								<input type="number" id="alertDistance" placeholder="1~3000" name="alertDistance" min="1" max="3000" required style="width: 80px;" >
 							  </li>
 							  
 						</ul>
@@ -100,50 +100,46 @@
 
 					<div class="collapse" id="collapseAccount">
 						<ul class="list-group list-group-flush">
-							<li
-								class="list-group-item"
+							<li class="list-group-item"
 								data-bs-toggle="collapse"
 								data-bs-target="#collapseChangePassword"
 								aria-expanded="false"
-								aria-controls="collapseThird"
-							>
+								aria-controls="collapseThird">
 								Change password
 							</li>
-
-							<div class="collapse" id="collapseChangePassword">
+					
+					        <div class="collapse" id="collapseChangePassword">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item">
 										<form action="/change_password" method="post">
-											<input name="new_password" type="password" placeholder="new password" required />
-											<button type="submit">Submit</button>
+											<div class="input-group">
+												<input name="old_password" type="password" placeholder="Old password" required />
+											</div>
+											<div class="input-group">
+												<input name="new_password" type="password" placeholder="New password" required />
+											</div>
+											<div class="input-group">
+												<input name="confirm_password" type="password" placeholder="Confirm new password" required />
+											</div>
+											<div class="input-group">
+												<button type="submit">Submit</button>
+											</div>
 										</form>
 									</li>
 								</ul>
 							</div>
 						</ul>
 					</div>
+					
 				</ul>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
 	</div>
 
-	<!--
-		toggle switch turned off
-		<div class="form-check form-switch">
-			<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-			<label class="form-check-label" for="flexSwitchCheckDefault">Toggle switch</label>
-		</div>
 
-		toggle switch turned on
-		<div class="form-check form-switch">
-			<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
-			<label class="form-check-label" for="flexSwitchCheckDefault">Toggle switch</label>
-		</div>
-	-->
-
-	<!-- Load scripts here -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<script>
 		$(document).ready(function() {
 		  // Add click event listener to the on/off button
@@ -160,14 +156,21 @@
 			} else {
 			  $(this).parent().find(".slider").removeClass("active");
 			}
-		  });
-	  
+		  
+		  
+		  // Store the checkbox state in localStorage
+		  localStorage.setItem("alertToggleState", $(this).prop("checked"));});
 		  // Initialize the slider based on the initial checkbox state
-		  var initialChecked = $("#alertToggle").prop("checked");
-		  if (initialChecked) {
-			$("#alertToggle").parent().find(".slider").addClass("active");
-		  }
-	  
+		  var storedAlertToggleState = localStorage.getItem("alertToggleState");
+		  console.log(storedAlertToggleState);
+		  if (storedAlertToggleState && storedAlertToggleState === "on") {
+    $("#alertToggle").prop("checked", true);
+    $("#alertToggle").parent().find(".slider").addClass("active");
+  } else {
+    $("#alertToggle").prop("checked", false);
+    $("#alertToggle").parent().find(".slider").removeClass("active");
+  }
+		
 		  // Add click event listener to the sound button
 		  $("#alertSoundToggle").click(function() {
 			// Toggle the active state of the slider
@@ -182,7 +185,18 @@
 			} else {
 			  $(this).parent().find(".slider").removeClass("active");
 			}
-		  });
+		  
+
+		    localStorage.setItem("alertSoundToggleState", $(this).prop("checked"));	});
+			var storedAlertSoundToggleState = localStorage.getItem("alertSoundToggleState");
+  			if (storedAlertSoundToggleState && storedAlertSoundToggleState === "on") {
+    		$("#alertSoundToggle").prop("checked", true);
+    		$("#alertSoundToggle").parent().find(".slider").addClass("active");
+  			} else {
+			$("#alertSoundToggle").prop("checked", false);
+			$("#alertSoundToggle").parent().find(".slider").removeClass("active");
+  			}
+		   
 
 		  $("#NotiToggle").click(function() {
 			// Toggle the active state of the slider
@@ -194,10 +208,14 @@
 			// Check if the slider is active
 			if ($(this).prop("checked")) {
 			  $(this).parent().find(".slider").addClass("active");
+			  isNotificationEnabled = true;
+			  console.log(isNotificationEnabled);
 			} else {
 			  $(this).parent().find(".slider").removeClass("active");
+			  isNotificationEnabled = false;
+			  console.log(isNotificationEnabled);
 			}
-		  });
+    });
 	  
 		  // Initialize the slider based on the initial checkbox state
 		  var initialChecked = $("#NotiToggle").prop("checked");
@@ -234,10 +252,6 @@
 		});
 	  </script>
 	  
-	  
- 
-
-
 </body>
 
 <%- include("templates/footer") %>

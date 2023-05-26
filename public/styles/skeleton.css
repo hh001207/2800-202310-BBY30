@@ -1,5 +1,6 @@
 body {
   background-color: #EDF7F6;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 /*
@@ -14,24 +15,24 @@ css for navbar and footer
   background-color: #F9FFFE;
 }
 
-.contactImg {
-  width: 32px;
-  padding-right: 10px;
-  padding-bottom: 5px;
-}
-
-#footerContactUs {
-  margin-left: 5px;
-}
-
-#headerName {
-  padding-left: 10px;
-}
-
-#footerName{
-  padding-left: 50px;
-}
-
-nav, footer {
+nav {
   background-color: #73956F;
+}
+
+.footerIcon {
+  margin-top: 15px;
+}
+
+footer {
+  color: black;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #73956F;
+  text-align: center;
+}
+
+footer p {
+  color: black;
 }

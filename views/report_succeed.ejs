@@ -1,15 +1,15 @@
 <%- include("templates/header") %>
 
 <head>
-  <link rel="stylesheet" href="/styles/report.css">
-  </head>
-  <!-- <div class="container" py-5 px-3> -->
-  <div class="container px-3 report_body">
-        <h1 class="display-4 text-center my-5 text-info">Thank you for your sharing!</h1>
-        
-        <br>
-        <button onclick="location.href='/report'">Report More</button>
-        <button onclick="location.href='/edit_report?reportId=<%= reportId %>'">Edit Report</button>
-      </div>
+	<link rel="stylesheet" href="/styles/report.css" />
+</head>
+<!-- <div class="container" py-5 px-3> -->
+<div class="container px-3 report_body">
+	<h1 class="display-4 text-center my-5">Thank you for your sharing!</h1>
+	<div class="d-flex justify-content-center btn-group">
+		<button class="submit_button btn" onclick="location.href='/'">Home</button>
+		<button class="submit_button btn" onclick="location.href='/edit_report?reportId=<%= reportId %>'">Edit</button>
+	</div>
+</div>
 
-<%- include("templates/footer") %> 
+<%- include("templates/footer") %>
