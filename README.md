@@ -2,6 +2,12 @@
 ### Project Description
 VanWatch is a mobile app aimed at helping travelers, business people, and residents in dangerous areas stay safe by providing real-time crime notifications, identifying high-potential crime occurrence regions, and offering personal safety tools. The app utilizes a comprehensive database of crime data combined with AI-powered algorithms to deliver accurate and timely information.
 
+### Core Features
+- Real-time Crime Notifications: Get instant alerts on criminal activities in your vicinity.
+- Crime Heat Maps: Understand the safety profile of your surroundings with high-potential crime occurrence regions highlighted.
+- Personal Safety Tools: Access a range of safety tools including safety tips, emergency contact numbers, and an emergency panic button.
+- Community Reporting: Contribute to a collective safety network by reporting crimes you've witnessed or been a victim of.
+
 ### Technologies Used
 - Frontend: EJS
 - Backend: Node.js
@@ -55,10 +61,12 @@ For a detailed overview of the app's features, please refer to the User Guide.
 - The Google Maps API is used for mapping and location services.
 - Firebase is used for push notification services.
 - TensorFlow is used for AI-powered analysis and predictions.
+
 ###How AI was Used
 1. AI in App Development: AI services were utilized to enhance the app's functionality, such as natural language processing for sentiment analysis in crime reports, image recognition for automatic license plate reading, and predictive analytics for identifying potential crime hotspots.
 2. AI in Data Cleaning: AI algorithms were employed to clean and preprocess crime datasets, removing inconsistencies and errors, and ensuring accurate and reliable information for analysis.
 3. AI in App Functionality: The VanWatch app utilizes AI algorithms for crime prediction and identification of high-potential crime occurrence regions. These algorithms analyze historical crime data and patterns to provide users with proactive safety information.
 4. Limitations and Overcoming Them: One limitation encountered was the availability and quality of crime data from open data sources. To overcome this, data cleaning techniques and AI algorithms were applied to handle missing or incomplete data. Additionally, the app relies on user-generated crime reports to supplement the existing data and improve accuracy over time.
+
 ### Contact Information
 For any inquiries or feedback, please contact our team at vanwatch@example.com.
