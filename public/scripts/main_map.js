@@ -49,7 +49,7 @@ function setMarkers(map) {
   const locations = [
     {
       name: 'Brentwood station',
-      lat: 	49.26774,
+      lat: 49.26774,
       lng: -123.00272,
       zIndex: 4,
       iconUrl: '/images/flag.png',
@@ -61,28 +61,30 @@ function setMarkers(map) {
       zIndex: 5,
       iconUrl: '/images/flag.png',
     },
-    {
-      name: 'Cronulla Beach',
-      lat: -34.028249,
-      lng: 151.157507,
-      zIndex: 3,
-      iconUrl: '/images/flag.png',
-    },
-    {
-      name: 'Manly Beach',
-      lat: -33.80010128657071,
-      lng: 151.28747820854187,
-      zIndex: 2,
-      iconUrl: '/images/flag.png',
-    },
-    {
-      name: 'Maroubra Beach',
-      lat: -33.950198,
-      lng: 151.259302,
-      zIndex: 1,
-      iconUrl: '/images/flag.png',
-    },
   ];
+
+  const numRandomPoints = 1000; // Number of random points to generate
+
+  for (let i = 0; i < numRandomPoints; i++) {
+    const randomLat = getRandomNumber(49.0, 49.5); // Random latitude within the Vancouver area
+    const randomLng = getRandomNumber(-123.3, -122.5); // Random longitude within the Vancouver area
+
+    locations.push({
+      name: `Random Location ${i + 1}`,
+      lat: randomLat,
+      lng: randomLng,
+      zIndex: i + 6, // Increase zIndex for each random point to ensure proper layering
+      iconUrl: '/images/flag.png',
+    });
+  }
+
+  // Rest of your code to set markers on the map
+
+  // Helper function to generate a random number within a specified range
+  function getRandomNumber(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
 
   const shape = {
     coords: [1, 1, 1, 20, 18, 20, 18, 1],

@@ -1,6 +1,17 @@
-/*
-have to change this img to map api
-*/
-img {
-  border-radius: 3%;
+/* Default styles for all devices */
+.d-flex.justify-content-center {
+  justify-content: center;
+}
+
+#map {
+  width: 1600px;
+  height: 725px;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 767px) {
+  #map {
+    width: 100%;
+    height: 400px;
+  }
 }
